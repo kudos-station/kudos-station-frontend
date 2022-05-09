@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './components/login.component'
 import SignUp from './components/signup.component'
 import ForgotPassword from './components/forgotpassword.component'
+import MainPage from './components/mainpage.component'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -41,6 +42,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/home" element={<MainPage />} />
             </Routes>
           </div>
         </div>
