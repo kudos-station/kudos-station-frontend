@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from './cookie-functions';
+import { getCookie } from './cookie-functions';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
 
@@ -13,7 +13,9 @@ const MainPage = () => {
 
     console.log(getCookie('kudos-auth'))
     return(
-    <h1>Hello World!</h1>
+    <div>
+     <h1>Hello World!</h1>
+    </div>
     )
 };
 

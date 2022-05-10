@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import { getCookie, delete_cookie } from "./cookie-functions";
+
 const ForgotPassword = () => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     const onClick = (e) => {
         e.preventDefault()
         setIsSubmitted(true);
-        console.log(getCookie('kudos-auth'))
-        console.log('deleting cookie')
-        delete_cookie('kudos-auth')
-        console.log(getCookie('kudos-auth'))
         
         Array.from(document.querySelectorAll("input")).forEach(
             input => (input.value = "")

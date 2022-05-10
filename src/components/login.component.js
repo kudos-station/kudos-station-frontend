@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "../styles.css";
-import { getCookie, setCookie } from './cookie-functions';
+import { setCookie } from './cookie-functions';
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -19,13 +19,8 @@ const Login = () => {
       console.log('unauth')
     }else{
       setCookie('kudos-auth', encoded, 1)
-      console.log(getCookie('kudos-auth'))
-      console.log(res)
       navigate("/home");
-
-      //this.props.history.push('/mainpage.component')
-      //return <Redirect to='/mainpage.component'  />
-
+      window.location.reload();
     }
   }
 
