@@ -17,6 +17,10 @@ const Login = () => {
     const res = await fetch(base_url + '/user/profile/', requestOptions)
     if(res.status === 401){
       console.log('unauth')
+      setErrorMessages({name: "pass", message: errors.pass})
+      setInterval(() => {
+        setErrorMessages({name: "noerror", message: errors.noerror})
+      }, 3000)
     }else{
       setCookie('kudos-auth', encoded, 1)
       navigate("/home");
@@ -25,8 +29,8 @@ const Login = () => {
   }
 
   const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
+    noerror : "",
+    pass: "Invalid username or password"
   };
 
   const handleSubmit = (event) => {
@@ -57,7 +61,6 @@ const Login = () => {
             name = "uname"
             required
           />
-          {renderErrorMessage("uname")}
         </div>
         <div className="mb-3">
           <label>Password</label>

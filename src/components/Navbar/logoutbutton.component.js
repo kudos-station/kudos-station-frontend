@@ -1,5 +1,5 @@
 import { Button } from 'react-bootstrap';
-import { deleteCookie } from './cookie-functions'
+import { deleteCookie } from '../cookie-functions'
 import { useNavigate } from "react-router-dom";
 
 const LogOutButton = () => {

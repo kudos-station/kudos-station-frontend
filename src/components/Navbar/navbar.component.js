@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, Form, Button, Container, FormControl } from 'react-bootstrap';
-import LogOutButton from '../logoutbutton.component';
+import LogOutButton from './logoutbutton.component';
 
 const KudosNavbar = () => {
 
