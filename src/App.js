@@ -8,7 +8,7 @@ import ForgotPassword from './components/forgotpassword.component'
 import MainPage from './components/Mainpage/mainpage.component'
 import Navbar from './components/Navbar/navbar.component'
 import CreateNewKudos from './components/Mainpage/createnewkudos.component'
-
+import Profile from './components/profile.component'
 
 
 function App() {
@@ -37,6 +37,7 @@ function App() {
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/home" element={<MainPage />} />
               <Route path="/create-new-kudos" element={<CreateNewKudos />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </div>
         </div>
