@@ -8,7 +8,7 @@ import MainPage from './components/Mainpage/mainpage.component'
 import Navbar from './components/Navbar/navbar.component'
 import CreateNewKudos from './components/Mainpage/createnewkudos.component'
 import Profile from './components/profile.component'
-
+import Filter from './components/FilterPage/filter.component'
 
 function App() {
   const [currentNavbar, setCurrentNavbar] = useState(null);
@@ -36,6 +36,7 @@ function App() {
               <Route path="/home" element={<MainPage />} />
               <Route path="/send-kudos" element={<CreateNewKudos />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/filter" element={<Filter />} />
             </Routes>
           </div>
         </div>
