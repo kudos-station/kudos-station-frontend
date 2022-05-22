@@ -79,9 +79,6 @@ const Login = () => {
             Submit
           </button>
         </div>
-        <p className="forgot-password text-right">
-          <a href="/forgot-password">Forgot password?</a>
-        </p>
       </form>
     );
   };

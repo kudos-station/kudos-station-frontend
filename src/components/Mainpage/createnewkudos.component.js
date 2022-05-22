@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import { getCookie } from '../cookie-functions'
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
@@ -10,6 +11,13 @@ const CreateNewKudos = () => {
   const [selectedKudos, setSelectedKudos] = useState("")
   const [selectedKudosProject, setSelectedKudosProject] = useState("")
   const [selectedKudosDep, setSelectedKudosDep] = useState("")
+
+  const navigate = useNavigate();
+    useEffect(() => {
+        if(!getCookie('kudos-auth')){    
+            navigate("/login");
+        }
+    },[])
 
   useEffect(() => {
     getKudosVar()

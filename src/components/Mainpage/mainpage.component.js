@@ -1,15 +1,13 @@
 import { getCookie } from '../cookie-functions';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
-import CreateNewKudos from './createnewkudos.component'
 import RecentKudos from './recentkudos.component';
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 
 const MainPage = () => {
-    const navigate = useNavigate();
     const [currentUserFullName, setCurrentUserFullName] = useState("")
-
+    const navigate = useNavigate();
     useEffect(() => {
         if(!getCookie('kudos-auth')){    
             navigate("/login");
