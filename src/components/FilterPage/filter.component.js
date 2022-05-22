@@ -10,6 +10,8 @@ const Filter = () => {
 
 
     return (
+<div className>
+
   <form onSubmit = {onClick}>
     <div className = "flex1">
       <div className="filterComponent1" id="cnk">
@@ -134,12 +136,10 @@ const Filter = () => {
     </div>
 
 
-
-
-
-
  </form>
   
+
+ </div>
     );
   };
 
