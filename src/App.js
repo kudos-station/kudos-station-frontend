@@ -36,7 +36,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/home" element={<MainPage />} />
-              <Route path="/create-new-kudos" element={<CreateNewKudos />} />
+              <Route path="/send-kudos" element={<CreateNewKudos />} />
               <Route path="/profile" element={<Profile />} />
             </Routes>
           </div>

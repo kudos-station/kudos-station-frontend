@@ -64,7 +64,21 @@ const [kudos, setKudos] = useState([{}])
     return (dt + '/' + month + '/' + year + ' ' + timeHour + ':' + timeMinutes + ':' + timeSecond)
   }
 
-
+  const correctFormat = (variation) => {
+    switch(variation) {
+      case "fast":
+        return "Fast"
+        break;
+      case "team-player":
+        return "Team Player"
+        break;
+      case "respectful":
+        return "Respectful"
+        break;
+      default:
+        return
+    }
+  }
     return (
      <div className = "main-page-component">
         <div className="container">
@@ -75,16 +89,16 @@ const [kudos, setKudos] = useState([{}])
                         <th>Date</th>
                         <th>Recipient</th>
                         <th>Sender</th>
-                        <th>Message</th>
+                        <th>Kudos Variation</th>
                     </tr>
                 </thead>
                 <tbody>
                     {kudos && kudos.map((kudo, index) =>
                         <tr key={index}>
                             <td>{kudo.createdAt}</td>
-                            <td>{kudo.recipient}</td>
-                            <td>{kudo.sender}</td>
-                            <td>{kudo.content}</td>
+                            <td>{kudo.recipientUsername}</td>
+                            <td>{kudo.senderUsername}</td>
+                            <td>{correctFormat(kudo.variation)}</td>
                         </tr>
                     )}
                 </tbody>

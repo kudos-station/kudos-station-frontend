@@ -35,7 +35,7 @@ const MainPage = () => {
         <div className= "main-page">
             <div className= "cnk-bar">
                 <h2>Logged in as: <br/><b>{currentUserFullName}</b></h2>
-                <Link to="/create-new-kudos"><Button className="btn btn-primary" id="cnk-btn">
+                <Link to="/send-kudos"><Button className="btn btn-primary" id="cnk-btn">
                 Create New Kudos
                 </Button>
                 </Link>
