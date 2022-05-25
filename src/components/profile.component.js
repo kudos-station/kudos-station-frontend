@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react'
             }
         },[])
         const [dataKudos, setDataKudos] = useState([{}])
-
+        const [dataSentKudos, setDataSendKudos] = useState([{}])
         const getSender = () => {
             const encoded = getCookie('kudos-auth').substring(6)
             var decoded = window.atob(encoded)
@@ -28,13 +28,13 @@ import { useEffect, useState } from 'react'
                 headers: { 'Authorization': getCookie('kudos-auth') },
             };
             const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-            const resKudos = await fetch(base_url + '/user/kudos/sent/' + username + '/' + '1', requestOptions)
-            const dataKudos = await resKudos.json()
-            const normalizedData = await normalizeDataDate(dataKudos)
+            const sentKudos = await fetch(base_url + '/user/kudos/sent/' + username + '/' + '1', requestOptions)
+            const dataSentKudos = await sentKudos.json()
+            const normalizedSentData = await normalizeDataDate(dataSentKudos)
             
-            if (resKudos.status === 200) {
-                console.log(dataKudos)
-                setDataKudos(normalizedData)
+            if (sentKudos.status === 200) {
+                console.log(dataSentKudos)
+                setDataSendKudos(normalizedSentData)
             } else {
                 console.log("failed")
             }
@@ -131,6 +131,28 @@ import { useEffect, useState } from 'react'
             </tbody>
         </table> )
 
+        const kudosSendTable = (<table className="table table-striped table-bordered" >
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Recipient</th>
+                    <th>Sender</th>
+                    <th>Variation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {dataSentKudos && dataSentKudos.map((kudo, index) =>
+                    <tr key={index}>
+                        <td>{kudo.createdAt}</td>
+                        <td>{kudo.recipientUsername}</td>
+                        <td>{kudo.senderUsername}</td>
+                        <td>{correctFormat(kudo.variation)}</td>
+                    </tr>
+                )}
+            </tbody>
+        </table>)
+
+
         useEffect(() => {
             getSentKudos(getSender())
             getRecievedKudos(getSender())
@@ -175,7 +197,7 @@ import { useEffect, useState } from 'react'
                           
                             <div id="userInfo" >
                             <h2 >{currentUserName} {currentUserSurname}</h2>
-                            <h6> {currentUserDepartment} </h6>
+                            <h7> {currentUserDepartment} </h7>
                             <br />
                             </div>
                         </div>
@@ -184,7 +206,7 @@ import { useEffect, useState } from 'react'
 
                          <div className="flex-parent">
                             <div id="lhs" >
-                            Active Project<br /><br /><br /> Kudos' Recieved<br /><br /><br /><br />Kudos' Sent
+                            Active Project<br /><br /><br /> <br />Kudos' Recieved<br /><br /><br /><br /><br /><br />Kudos' Sent
                             </div>
 
                             <div id="rhs" >
@@ -194,7 +216,7 @@ import { useEffect, useState } from 'react'
                                 </div> 
                                   <div id="table table-striped table-bordered" >
                                 <br />
-                                    {kudosRecievedTable}
+                                    {kudosSendTable}
                                 </div> 
                             </div>
                          </div>
