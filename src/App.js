@@ -9,6 +9,7 @@ import Navbar from './components/Navbar/navbar.component'
 import CreateNewKudos from './components/Mainpage/createnewkudos.component'
 import Profile from './components/profile.component'
 import Filter from './components/FilterPage/filter.component'
+import KudosByDepartment from './components/FilterPage/kudosByDepartment.component'
 
 function App() {
   const [currentNavbar, setCurrentNavbar] = useState(null);
@@ -37,6 +38,7 @@ function App() {
               <Route path="/send-kudos" element={<CreateNewKudos />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/filter" element={<Filter />} />
+              <Route path="/kudosByDepartment" element={<KudosByDepartment />} />
             </Routes>
           </div>
         </div>

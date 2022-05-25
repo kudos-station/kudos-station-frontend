@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 const Filter = () => {
     
   const navigate = useNavigate();
+  
   useEffect(() => {
       if(!getCookie('kudos-auth')){    
           navigate("/login");
@@ -13,8 +14,14 @@ const Filter = () => {
   },[])
 
   const onClick1 = (e) => {
-    e.preventDefault();
-    console.log("Im inside onclick 1");
+    console.log(document.form1)
+
+    navigate("/kudosByDepartment");
+    this.props.history.push({
+      pathname: "/kudosByDepartment",
+      state: { department: document.form1 }
+    });
+    
   }
 
   const onClick2 = (e) => {
@@ -31,9 +38,6 @@ const Filter = () => {
     e.preventDefault();
     console.log("Im inside onclick 4");
   }
-
-
-
 
     return (
 <div>
@@ -63,7 +67,7 @@ const Filter = () => {
         <form name="form2"  onSubmit = {onClick2}>
           <div className="filterComponent2" id="cnk">
             <h3>Filter Users by Department</h3>
-              <p>Shows the users who works in the given department and get all variation of the kudoses</p>
+              <p>Shows the users who works in the given department and get all variation of the kudoses.</p>
               <div className="mb-3">
                 <label>Department</label>
                 <input
