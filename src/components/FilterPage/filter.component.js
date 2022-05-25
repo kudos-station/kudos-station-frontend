@@ -41,13 +41,13 @@ const Filter = () => {
         <form  onSubmit = {onClick1} name="form1">
           <div className="filterComponent1" id="cnk">
             <h3>Filter Kudos By Department</h3>
-            <p>Shows the last 5 recent KUDOSes that are owned by users who work in all projects which is run by the given department.</p>
+            <p>Shows the last 5 recent kudoses that are owned by users who work in all projects run by the given department.</p>
               <div className="mb-3">
                 <label>Department</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Department"
+                  placeholder="Enter Department"
                   name = "department"
                   required
                 />
@@ -63,13 +63,13 @@ const Filter = () => {
         <form name="form2"  onSubmit = {onClick2}>
           <div className="filterComponent2" id="cnk">
             <h3>Filter Users by Department</h3>
-              <p>Shows the users who works in the given department and get all variation of the KUDOSes</p>
+              <p>Shows the users who works in the given department and get all variation of the kudoses</p>
               <div className="mb-3">
                 <label>Department</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Department"
+                  placeholder="Enter Department"
                   name = "department"
                   required
                 />
@@ -88,26 +88,16 @@ const Filter = () => {
       
       <div className = "flex1">
           <form name="form3" onSubmit = {onClick3}>
-            <div className="filterComponent1" id="cnk">
-              <h3>Filter Projects</h3>
-              <p>Description</p>
+            <div className="filterComponent3" id="cnk">
+              <h3>Filter User's Projects by # of Kudos</h3>
+              <p>Prints the person who gets the most kudos given kudos type and the projects this person is currently working on.</p>
                 <div className="mb-3">
-                  <label>Filters</label>
+                  <label>Kudos Type</label>
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Filters"
+                    placeholder="Enter Kudos Type"
                     name = "recipient"
-                    required
-                  />
-                </div>
-                <div className="mb-3" >
-                  <label>Filters</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Filters"
-                    name = "comment"
                     required
                   />
                 </div>
@@ -120,26 +110,16 @@ const Filter = () => {
         </form>
 
         <form name="form4" onSubmit = {onClick4}>
-            <div className="filterComponent2" id="cnk">
-              <h3>Filter Users</h3>
-              <p>Description</p>
+            <div className="filterComponent4" id="cnk">
+              <h3>Filter Users by Project</h3>
+              <p>Prints users who work on the given project and are recieved all of the kudos types and sent any of the kudos type.</p>
                 <div className="mb-3">
-                  <label>Filters</label>
+                  <label>Project</label>
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Filters"
+                    placeholder="Enter Project"
                     name = "recipient"
-                    required
-                  />
-                </div>
-                <div className="mb-3" >
-                  <label>Filters</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Filters"
-                    name = "comment"
                     required
                   />
                 </div>
