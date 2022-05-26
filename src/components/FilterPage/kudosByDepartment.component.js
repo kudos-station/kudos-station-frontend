@@ -1,30 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getCookie } from "../cookie-functions";
+import { useLocation } from 'react-router-dom';
+
 
 const KudosByDepartment = () => {
     const [kudos, setKudos] = useState([{}])
-
-    useEffect(() => {
-        getRecent5Kudos()
-
-    }, [window.location.pathname]);
-
-    const getRecent5Kudos = async () => {
-        const requestOptions = {
-            method: 'GET',
-            headers: { 'Authorization': getCookie('kudos-auth') },
-        };
-        const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-        const res = await fetch(base_url + '/user/kudos/works-in-all-projects/from-department', requestOptions)
-        const data = await res.json()
-        const normalizedData = await normalizeDataDate(data)
-        if (res.status === 200) {
-            console.log(data)
-            setKudos(normalizedData)
-        } else {
-            console.log("failed")
-        }
-    }
+    const location = useLocation();
+    console.log(location.state);
+    
     const normalizeDataDate = async (data) => {
 
         for (let i = 0; i < data.length; i++) {

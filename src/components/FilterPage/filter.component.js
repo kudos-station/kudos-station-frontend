@@ -3,16 +3,31 @@ import { getCookie } from '../cookie-functions';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
 
-const Filter = () => {
-    
-  const navigate = useNavigate();
 
+const Filter = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     if (!getCookie('kudos-auth')) {
       navigate("/login");
     }
   }, [])
 
+
+ const onClick1 = async(e) => {
+    e.preventDefault();
+    var { department } = document.forms[1];
+    var inputDepartment = await sendDepartment(department.value)
+    console.log("geldi mi" + inputDepartment)
+    navigate('/kudosByDepartment', {
+     state: {
+       ilki: "inputDepartment[0][0]", ikincisi: "inputDepartment[0][1]"
+      } });
+  }
+  const onClick2 = (e) => {
+    var { department2 } = document.forms[1];
+    sendDepartment2(department2.value)
+    navigate("/usersByDepartment");
+  }
   const sendDepartment2 = async (department2) => {
     const requestOptions = {
       method: 'POST',
@@ -20,64 +35,37 @@ const Filter = () => {
       body: JSON.stringify({ "departmentName": department2 })
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    const res = await fetch(base_url + '/user/kudos/recieved-all-variations/from-department' + department2, requestOptions)
-    if (res.status === 200) {
-      console.log('send department successful')
-    } else {
-      console.log('failed to send')
-    }
-  }
-
-  const sendDepartment = async (department2) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json' },
-      body: JSON.stringify({ "departmentName": department2 })
-    };
-    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    const res = await fetch(base_url + '/user/kudos/works-in-all-projects/from-departmen', requestOptions)
-    if (res.status === 200) {
-      console.log('send department successful')
-    } else {
-      console.log('failed to send')
-    }
-  }
-
-  /*
-  const getUsersInDep = async (department2) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json' },
-      body: JSON.stringify({ "departmentName": department2 })
-    };
-    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    const res = await fetch(base_url + '/user/kudos/recieved-all-variations/from-department', requestOptions)
+    const res = await fetch(base_url + '/user/kudos/received-all-variations/from-department/', requestOptions)
     const data = await res.json()
     if (res.status === 200) {
-      console.log(data["usernames"])
-      return data["usernames"]
+      console.log('send department successful')
+      console.log(data)
+      return data
     } else {
-      console.log("failed")
-      return
+      console.log('failed to send')
     }
   }
-*/
-  const onClick1 = (e) => {
-    sendDepartment(department)
-    var { department } = document.forms[0];
-    navigate("/kudosByDepartment");
+
+  const sendDepartment = async (department) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ "departmentName": department })
+    };
+    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
+    const res = await fetch(base_url + '/user/kudos/works-in-all-projects/from-department/', requestOptions)
+    const data = await res.json()
+    if (res.status === 200) {
+      console.log('send department successful')
+      console.log(data)
+      return data
+    } else {
+      console.log('failed to send')
+    }
   }
 
-  const onClick2 = (e) => {
-    e.preventDefault();
-    var { department2 } = document.forms[0];
-    //const usersInDep = await getUsersInDep(department2.value)
-    sendDepartment2(department2)
-    navigate("/usersByDepartment");
 
-  }
   
-
   const onClick3 = (e) => {
     e.preventDefault();
     navigate("/usersProjectWithMaxKudos");
