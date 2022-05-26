@@ -86,6 +86,8 @@ const KudosByDepartment = () => {
         <div className="main-page-component">
             <div className="container">
                 <h3 className="p-3 text-center"></h3>
+                <h1 className="text-center"> Filtered Kudos </h1>
+
                 <p>Shows the last 5 recent kudoses that are owned by users who work in all projects run by the given department.</p>
                 <table className="table table-striped table-bordered" style={{ "marginTop": "15px" }}>
                     <thead>

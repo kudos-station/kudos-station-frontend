@@ -10,6 +10,9 @@ import CreateNewKudos from './components/Mainpage/createnewkudos.component'
 import Profile from './components/profile.component'
 import Filter from './components/FilterPage/filter.component'
 import KudosByDepartment from './components/FilterPage/kudosByDepartment.component'
+import UsersByDepartment from './components/FilterPage/usersByDepartment.component'
+import UsersProjectWithMaxKudos from './components/FilterPage/usersProjectWithMaxKudos.component'
+import UsersByProject from './components/FilterPage/usersByProject.component'
 
 function App() {
   const [currentNavbar, setCurrentNavbar] = useState(null);
@@ -39,6 +42,9 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/filter" element={<Filter />} />
               <Route path="/kudosByDepartment" element={<KudosByDepartment />} />
+              <Route path="/usersByDepartment" element={<UsersByDepartment />} />
+              <Route path="/usersProjectWithMaxKudos" element={<UsersProjectWithMaxKudos />} />
+              <Route path="/usersByProject" element={<UsersByProject />} />
             </Routes>
           </div>
         </div>

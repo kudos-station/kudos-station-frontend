@@ -92,6 +92,35 @@
     margin-bottom: 15px;
     margin: auto;
   }
+   .main-page-component{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin: 10px;
+    border: 2px solid #167bff;
+    border-radius: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    margin: auto;
+  }
+ .usersByDepartmentComponent {
+   width: 400px;
+   display: flex;
+   flex-direction: row;
+   gap: 30px;
+   margin: 10px;
+   border: 2px solid #167bff;
+   border-radius: 15px;
+   padding-left: 15px;
+   padding-right: 15px;
+   padding-top: 15px;
+   padding-bottom: 15px;
+   margin-bottom: 15px;
+   margin: auto;
+ }
   #cnk {
     flex-direction: column;
     gap: 15px;
@@ -143,6 +172,13 @@
     height: 1px;
     background: #000000;
   }
+   #horizontalLine {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 350px;
+    height: 1px;
+    background: #000000;
+  }
   #userInfo {
   left: 257px;
   height: 100px;
@@ -152,8 +188,7 @@
   text-align: left;
   color: #000000;
   }
-
-
+  
   #lhs {
     margin-top: 20px;
     left: 46px;
@@ -185,7 +220,18 @@
     margin-left: auto;
     margin-right: auto;
   }
+   #containerUsers {
+    position: relative;
+    width: 350px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+  }
   #container>div {
+      position: relative;
+      top: inherit;
+  }
+  #containerUsers>div {
       position: relative;
       top: inherit;
   }
@@ -285,3 +331,17 @@
   color: #000000;
 }
 
+  .containerUsersComponent{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin: 10px;
+    border: 2px solid #167bff;
+    border-radius: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    margin: auto;
+  }
