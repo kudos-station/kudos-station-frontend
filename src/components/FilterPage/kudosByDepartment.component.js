@@ -9,9 +9,6 @@ const KudosByDepartment = () => {
     console.log(location.state.datam);
     console.log( JSON.parse(location.state.datam))
     
-    const toArray = (myString) =>{
-        JSON.parse(myString);
-    }
     const normalizeDataDate = async (data) => {
 
         for (let i = 0; i < data.length; i++) {

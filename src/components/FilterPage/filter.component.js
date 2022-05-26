@@ -19,10 +19,10 @@ const Filter = () => {
     sendDepartment(department.value)
   
   }
-  const onClick2 = (e) => {
-    var { department2 } = document.forms[1];
+  const onClick2 = async(e) => {
+    e.preventDefault();
+    var { department2 } = document.forms[2];
     sendDepartment2(department2.value)
-    navigate("/usersByDepartment");
   }
   const sendDepartment2 = async (department2) => {
     const requestOptions = {
@@ -35,12 +35,18 @@ const Filter = () => {
     const data = await res.json()
     if (res.status === 200) {
       console.log('send department successful')
-      console.log(data)
-      return data
+      console.log(data["usernames"])
+      console.log("geldi mi" + JSON.stringify(data["usernames"]))
+      navigate('/usersByDepartment', {
+        state: {
+          datam: JSON.stringify(data["usernames"])
+        }
+      });
     } else {
       console.log('failed to send')
     }
   }
+
 
   const sendDepartment = async (department) => {
     const requestOptions = {
