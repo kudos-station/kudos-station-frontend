@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 
 
 const Filter = () => {
+  const [inputDepartment, setInputDepartment] = useState([{}])
   const navigate = useNavigate();
   useEffect(() => {
     if (!getCookie('kudos-auth')) {
@@ -12,16 +13,11 @@ const Filter = () => {
     }
   }, [])
 
-
  const onClick1 = async(e) => {
     e.preventDefault();
     var { department } = document.forms[1];
-    var inputDepartment = await sendDepartment(department.value)
-    console.log("geldi mi" + inputDepartment)
-    navigate('/kudosByDepartment', {
-     state: {
-       ilki: "inputDepartment[0][0]", ikincisi: "inputDepartment[0][1]"
-      } });
+    sendDepartment(department.value)
+  
   }
   const onClick2 = (e) => {
     var { department2 } = document.forms[1];
@@ -58,7 +54,13 @@ const Filter = () => {
     if (res.status === 200) {
       console.log('send department successful')
       console.log(data)
-      return data
+      setInputDepartment(JSON.stringify(data));
+      console.log("geldi mi" + JSON.stringify(data))
+      navigate('/kudosByDepartment', {
+        state: {
+          datam: JSON.stringify(data)
+        }
+      });
     } else {
       console.log('failed to send')
     }
