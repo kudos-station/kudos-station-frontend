@@ -11,13 +11,9 @@ const KudosByDepartment = () => {
 
     const getRecent5Kudos = async () => {
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "departmentName": "deneme" })
-
+            method: 'GET',
+            headers: { 'Authorization': getCookie('kudos-auth') },
         };
-
-
         const base_url = process.env.REACT_APP_KUDOS_BASE_URL
         const res = await fetch(base_url + '/user/kudos/works-in-all-projects/from-department', requestOptions)
         const data = await res.json()
@@ -29,7 +25,6 @@ const KudosByDepartment = () => {
             console.log("failed")
         }
     }
-
     const normalizeDataDate = async (data) => {
 
         for (let i = 0; i < data.length; i++) {

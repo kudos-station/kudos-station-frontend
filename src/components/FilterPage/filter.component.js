@@ -6,13 +6,27 @@ import { useEffect, useState } from 'react'
 const Filter = () => {
     
   const navigate = useNavigate();
-  const [selectedDepartment, setSelectedDepartment] = useState("")
 
   useEffect(() => {
-      if(!getCookie('kudos-auth')){    
-          navigate("/login");
-      }
-  },[])
+    if (!getCookie('kudos-auth')) {
+      navigate("/login");
+    }
+  }, [])
+
+  const sendDepartment2 = async (department2) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ "departmentName": department2 })
+    };
+    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
+    const res = await fetch(base_url + '/user/kudos/recieved-all-variations/from-department' + department2, requestOptions)
+    if (res.status === 200) {
+      console.log('send department successful')
+    } else {
+      console.log('failed to send')
+    }
+  }
 
   const sendDepartment = async (department2) => {
     const requestOptions = {
@@ -21,7 +35,7 @@ const Filter = () => {
       body: JSON.stringify({ "departmentName": department2 })
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    const res = await fetch(base_url + '/user/kudos/recieved-all-variations/from-department' + department2, requestOptions)
+    const res = await fetch(base_url + '/user/kudos/works-in-all-projects/from-departmen', requestOptions)
     if (res.status === 200) {
       console.log('send department successful')
     } else {
@@ -49,22 +63,16 @@ const Filter = () => {
   }
 */
   const onClick1 = (e) => {
-    console.log(document.form1)
-
+    sendDepartment(department)
+    var { department } = document.forms[0];
     navigate("/kudosByDepartment");
-    this.props.history.push({
-      pathname: "/kudosByDepartment",
-      state: { department: document.form1 }
-    });
-    
   }
 
   const onClick2 = (e) => {
     e.preventDefault();
     var { department2 } = document.forms[0];
     //const usersInDep = await getUsersInDep(department2.value)
-    sendDepartment(department2)
-   // console.log("department2 is" + department2);
+    sendDepartment2(department2)
     navigate("/usersByDepartment");
 
   }

@@ -8,7 +8,7 @@ const [kudos, setKudos] = useState([{}])
   useEffect(() => {
       getRecentKudos()
 
-}, [window.location.pathname]);
+  }, [window.location.pathname]);
 
   const getRecentKudos = async () => {
     const requestOptions = {
