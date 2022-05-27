@@ -12,8 +12,10 @@ import { useEffect, useState } from 'react'
                 navigate("/login");
             }
         },[])
+
         const [dataKudos, setDataKudos] = useState([{}])
         const [dataSentKudos, setDataSendKudos] = useState([{}])
+
         const getSender = () => {
             const encoded = getCookie('kudos-auth').substring(6)
             var decoded = window.atob(encoded)
@@ -154,6 +156,7 @@ import { useEffect, useState } from 'react'
 
 
         useEffect(() => {
+            getUser()
             getSentKudos(getSender())
             getRecievedKudos(getSender())
         }, [window.location.pathname]);
@@ -184,7 +187,6 @@ import { useEffect, useState } from 'react'
             }
           
         }
-        getUser()
         return (
             <>
                 <div id="container" >

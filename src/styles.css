@@ -230,4 +230,9 @@
   text-align: middle;
   color: #000000;
 }
-
+.cnk-page {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 30px;
+  }
