@@ -5,6 +5,47 @@ import { useEffect, useState } from 'react'
 
 
 const Filter = () => {
+
+
+  const normalizeDataDate = async (data) => {
+
+    for (let i = 0; i < data.length; i++) {
+      var currEntry = data[i]
+      currEntry["createdAt"] = await normalizeDateTime(currEntry["createdAt"])
+    }
+    return data
+  }
+
+  const normalizeDateTime = async (iso) => {
+    const date = new Date(iso);
+    const year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var dt = date.getDate();
+    var timeMinutes = date.getMinutes();
+    var timeHour = date.getHours();
+    var timeSecond = date.getSeconds();
+
+    if (dt < 10) {
+      dt = '0' + dt;
+    }
+    if (month < 10) {
+      month = '0' + month;
+    }
+    if (timeHour < 10) {
+      timeHour = '0' + timeHour;
+    }
+    if (timeSecond < 10) {
+      timeSecond = '0' + timeSecond;
+    }
+    if (timeMinutes < 10) {
+      timeMinutes = '0' + timeMinutes;
+    }
+
+    return (dt + '/' + month + '/' + year + ' ' + timeHour + ':' + timeMinutes + ':' + timeSecond)
+  }
+
+
+
   const [inputDepartment, setInputDepartment] = useState([{}])
   const navigate = useNavigate();
   useEffect(() => {
@@ -39,7 +80,7 @@ const Filter = () => {
       console.log("geldi mi" + JSON.stringify(data["usernames"]))
       navigate('/usersByDepartment', {
         state: {
-          datam: JSON.stringify(data["usernames"])
+          datam: data
         }
       });
     } else {

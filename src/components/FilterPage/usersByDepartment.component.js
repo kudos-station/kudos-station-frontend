@@ -16,7 +16,7 @@ function UsersByDepartment() {
     }, [])
 
     const location = useLocation();
-
+    console.log(location.state.datam["usernames"]) 
     return (
         <>
             <div className="usersByDepartmentComponent">
@@ -24,7 +24,7 @@ function UsersByDepartment() {
                     <h1 className="text-center"> Filtered Users </h1>
                     <p> These users are working on kudos station developlement department, also they recieved all variations of possible kudoses </p>
                     <div id="horizontalLine"  ></div>
-                    {JSON.parse(location.state.datam)} <br></br>
+                    {location.state.datam["usernames"][0]} <br></br>
                 </div>
 
             </div>

@@ -8,7 +8,7 @@ const KudosByDepartment = () => {
     const location = useLocation();
     console.log(location.state.datam);
     console.log( JSON.parse(location.state.datam))
-    
+
     const normalizeDataDate = async (data) => {
 
         for (let i = 0; i < data.length; i++) {
@@ -78,7 +78,7 @@ const KudosByDepartment = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {JSON.parse(location.state.datam) && JSON.parse(location.state.datam).map((kudo, index) =>
+                        {normalizeDataDate(JSON.parse(location.state.datam)) && JSON.parse(location.state.datam).map((kudo, index) =>
                             <tr key={index}>
                                 <td>{kudo.createdAt}</td>
                                 <td>{kudo.recipientUsername}</td>
