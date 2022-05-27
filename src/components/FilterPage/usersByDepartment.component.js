@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { getCookie } from "../cookie-functions";
 import { useLocation } from 'react-router-dom';
 

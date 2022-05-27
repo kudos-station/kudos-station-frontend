@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { getCookie } from "../cookie-functions";
+import React from "react";
 import { useLocation } from 'react-router-dom';
 
 
 const KudosByDepartment = () => {
-    const [kudos, setKudos] = useState([{}])
     const location = useLocation();
     console.log(location.state.datam);
     console.log( JSON.parse(location.state.datam))

@@ -1,16 +1,10 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react'
-import { getCookie } from "../cookie-functions";
-
-
 
 function UsersProjectWithMaxKudos() {
 
 
     return (
         <>
-
             <div className= "containerUsersComponent" >
                     <div id="containerUsers" >
                     <h1 className="text-center">Irmak Erkol</h1>
