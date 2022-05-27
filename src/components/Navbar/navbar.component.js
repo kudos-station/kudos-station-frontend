@@ -13,9 +13,12 @@ const KudosNavbar = () => {
 				className="container-fluid"
 				style={{ maxHeight: '100px' }}
 				navbarScroll
-			>
+			>   <Nav.Link className="border-left pl-2 ml-auto" style={{"marginLeft": "720px"}} href="/filter">Filter</Nav.Link>
 				<Nav.Link className="border-left pl-2 ml-auto" style={{"marginLeft": "auto", "marginRight": "10px"}} href="/profile">Profile</Nav.Link>
 			</Nav>
+
+	
+
 			<Form className="d-flex">
 				<FormControl
 				type="search"
