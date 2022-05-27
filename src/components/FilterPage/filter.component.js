@@ -60,9 +60,7 @@ const Filter = () => {
     const data = await res.json()
     if (res.status === 200) {
       console.log('send department successful')
-      console.log(data)
       setInputDepartment(JSON.stringify(data));
-      console.log("geldi mi" + JSON.stringify(data))
       navigate('/kudosByDepartment', {
         state: {
           datam: JSON.stringify(data)

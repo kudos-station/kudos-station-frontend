@@ -199,7 +199,7 @@ import { useEffect, useState } from 'react'
                           
                             <div id="userInfo" >
                             <h2 >{currentUserName} {currentUserSurname}</h2>
-                            <h7> {currentUserDepartment} </h7>
+                            <h6> {currentUserDepartment} </h6>
                             <br />
                             </div>
                         </div>
