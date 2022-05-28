@@ -14,6 +14,7 @@ import UsersByDepartment from './components/FilterPage/usersByDepartment.compone
 import UsersProjectWithMaxKudos from './components/FilterPage/usersProjectWithMaxKudos.component'
 import UsersByProject from './components/FilterPage/usersByProject.component'
 import AdminPanel from './components/AdminPanelPage/admin-panel.component'
+import AddUser from './components/AdminPanelPage/adduser.component'
 
 
 function App() {
@@ -48,6 +49,8 @@ function App() {
               <Route path="/usersProjectWithMaxKudos" element={<UsersProjectWithMaxKudos />} />
               <Route path="/usersByProject" element={<UsersByProject />} />
               <Route path="/admin-panel" element={<AdminPanel />} />
+              <Route path="/admin-panel/add-user" element={<AddUser />} />
+              
 
               
             </Routes>
