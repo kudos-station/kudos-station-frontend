@@ -1,6 +1,8 @@
 import React from 'react'
 import { Navbar, Nav, Form, Button, Container, FormControl } from 'react-bootstrap';
+import AdminPanelButton from './admin-panel-button.component';
 import LogOutButton from './logoutbutton.component';
+
 
 const KudosNavbar = () => {
 
@@ -29,13 +31,17 @@ const KudosNavbar = () => {
 				/>
 				<Button className="btn btn-primary" variant="outline-success" id="searchButton" style= {{"marginRight": "10px"}}>Search</Button>
 			</Form>
+			{<AdminPanelButton />}
 			{<LogOutButton />}
+			
+			
 		</Container>
 		</Navbar>
 	)
 	return(
 	<>
 		{kudosNavbar}
+
     </>
 	)
 }

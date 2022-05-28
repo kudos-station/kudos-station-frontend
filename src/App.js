@@ -14,6 +14,7 @@ import UsersByDepartment from './components/FilterPage/usersByDepartment.compone
 import UsersProjectWithMaxKudos from './components/FilterPage/usersProjectWithMaxKudos.component'
 import UsersByProject from './components/FilterPage/usersByProject.component'
 
+
 function App() {
   const [currentNavbar, setCurrentNavbar] = useState(null);
 
@@ -45,6 +46,7 @@ function App() {
               <Route path="/usersByDepartment" element={<UsersByDepartment />} />
               <Route path="/usersProjectWithMaxKudos" element={<UsersProjectWithMaxKudos />} />
               <Route path="/usersByProject" element={<UsersByProject />} />
+              
             </Routes>
           </div>
         </div>
