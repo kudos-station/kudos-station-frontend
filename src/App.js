@@ -18,6 +18,7 @@ import AddUser from './components/AdminPanelPage/adduser.component'
 import ChangeUserRole from './components/AdminPanelPage/changeuserrole.component'
 import DeleteUser from './components/AdminPanelPage/deleteuser.component'
 import AddDepartment from './components/AdminPanelPage/add-department.component'
+import AddProject from './components/AdminPanelPage/addproject.component'
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
               <Route path="/admin-panel/change-user-role" element={<ChangeUserRole />} />
               <Route path="/admin-panel/delete-user" element={<DeleteUser />} />
               <Route path="/admin-panel/add-department" element={<AddDepartment />} />
+              <Route path="/admin-panel/add-project" element={<AddProject />} />
               
 
               
