@@ -13,6 +13,7 @@ import KudosByDepartment from './components/FilterPage/kudosByDepartment.compone
 import UsersByDepartment from './components/FilterPage/usersByDepartment.component'
 import UsersProjectWithMaxKudos from './components/FilterPage/usersProjectWithMaxKudos.component'
 import UsersByProject from './components/FilterPage/usersByProject.component'
+import AdminPanel from './components/AdminPanelPage/admin-panel.component'
 
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
               <Route path="/usersByDepartment" element={<UsersByDepartment />} />
               <Route path="/usersProjectWithMaxKudos" element={<UsersProjectWithMaxKudos />} />
               <Route path="/usersByProject" element={<UsersByProject />} />
+              <Route path="/admin-panel" element={<AdminPanel />} />
+
               
             </Routes>
           </div>
