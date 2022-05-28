@@ -16,6 +16,7 @@ import UsersByProject from './components/FilterPage/usersByProject.component'
 import AdminPanel from './components/AdminPanelPage/admin-panel.component'
 import AddUser from './components/AdminPanelPage/adduser.component'
 import ChangeUserRole from './components/AdminPanelPage/changeuserrole.component'
+import DeleteUser from './components/AdminPanelPage/deleteuser.component'
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
               <Route path="/admin-panel" element={<AdminPanel />} />
               <Route path="/admin-panel/add-user" element={<AddUser />} />
               <Route path="/admin-panel/change-user-role" element={<ChangeUserRole />} />
+              <Route path="/admin-panel/delete-user" element={<DeleteUser />} />
               
 
               

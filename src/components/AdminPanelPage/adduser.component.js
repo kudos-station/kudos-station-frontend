@@ -40,7 +40,7 @@ const AddUser = () => {
     const res = await fetch(base_url + '/admin/create-user', requestOptions)
     //const data = await res.json()
     //
-    if(res.status === 201){
+    if(res.status === 200){
       console.log("successful")
       
     }else{
@@ -76,8 +76,8 @@ const AddUser = () => {
      console.log(uname)
      console.log(pass)
      console.log(auth)
-    // console.log(JSON.stringify({"firstName": name.value, "lastName": sname.value, "username": uname.value, "password": pass.value, "authority":auth.value}))
-    addUser(name, sname, uname, pass, auth)
+    console.log(JSON.stringify({"firstName": name, "lastName": sname, "username": uname, "password": pass, "authority":auth}))
+    //addUser(name, sname, uname, pass, auth)
     
     
   };
