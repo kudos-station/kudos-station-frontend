@@ -71,13 +71,9 @@ const AddUser = () => {
       auth = document.getElementById("user").value;
     }
     
-     console.log(name)
-     console.log(sname)
-     console.log(uname)
-     console.log(pass)
-     console.log(auth)
+    
     console.log(JSON.stringify({"firstName": name, "lastName": sname, "username": uname, "password": pass, "authority":auth}))
-    //addUser(name, sname, uname, pass, auth)
+    addUser(name, sname, uname, pass, auth)
     
     
   };
