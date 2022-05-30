@@ -67,7 +67,7 @@ const AddUserToDepartment = () => {
     console.log(department_name)
     console.log(JSON.stringify({"username": user_name, "departmentName":department_name}))
     
-    addUserToProject(user_id, department_id)
+    addUserToProject(user_name, department_name)
     
     
   };
