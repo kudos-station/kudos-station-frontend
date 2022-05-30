@@ -39,29 +39,29 @@ const AddUserToProject = () => {
     //Prevent page reload
     event.preventDefault();
     
-    var userID = document.getElementById("user_id").value;
-    var departmentID = document.getElementById("dep_id").value;
-    var projectID = document.getElementById("project_id").value;
-    var workHours = document.getElementById("work_hours").value;
+    var userName = document.getElementById("username").value;
+    var departmentName = document.getElementById("departmentname").value;
+    var projectName = document.getElementById("projectname").value;
+    var workHours = document.getElementById("workhours").value;
 
-    console.log(userID);
-    console.log(departmentID);
-    console.log(projectID);
+    console.log(userName);
+    console.log(departmentName);
+    console.log(projectName);
     console.log(workHours);
     
-    //console.log(JSON.stringify({"username": uname, "authority":auth}))
-    assignUser(userID, departmentID, projectID, workHours)
+    console.log(JSON.stringify({"username": userName, "departmentName": departmentName, "projectName": projectName, "workHours":parseInt(workHours)}))
+    assignUser(userName, departmentName, projectName, workHours)
     
   };
 
-  const assignUser = async (userID, departmentID, projectID, workHours) => {
+  const assignUser = async (userName, departmentName, projectName, workHours) => {
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json'},
-      //body: JSON.stringify({"project-name": pname, "department-id":parseInt(dep_id)})
+      body: JSON.stringify({"username": userName, "departmentName": departmentName, "projectName": projectName, "workHours":parseInt(workHours)})
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    const res = await fetch(base_url + '/admin/works-on/create-relation/' + parseInt(userID) + '/' + parseInt(departmentID) + '/' + parseInt(projectID) + '/' + parseInt(workHours), requestOptions)
+    const res = await fetch(base_url + '/admin/works-on/create-relation/', requestOptions)
     const data = await res.json()
     
     if(res.status === 200){
@@ -71,7 +71,7 @@ const AddUserToProject = () => {
       console.log("failed")
       
     }
-    console.log(userID, departmentID, projectID, workHours)
+    
   }
 
   /* const renderErrorMessage = (name) =>
@@ -95,28 +95,28 @@ const AddUserToProject = () => {
             <input
             type="text"
             className="form-control"
-            placeholder="User ID"
+            placeholder="User Name"
             name = "uname"
             autoComplete = "on"
-            id='user_id'
+            id='username'
             required
           />
           <input
             type="text"
             className="form-control"
-            placeholder="Department ID"
+            placeholder="Department Name"
             name = "uname"
             autoComplete = "on"
-            id='dep_id'
+            id='departmentname'
             required
           />
           <input
             type="text"
             className="form-control"
-            placeholder="Project ID"
+            placeholder="Project Name"
             name = "uname"
             autoComplete = "on"
-            id='project_id'
+            id='projectname'
             required
           />
           <input
@@ -125,7 +125,7 @@ const AddUserToProject = () => {
             placeholder="Work Hours"
             name = "uname"
             autoComplete = "on"
-            id='work_hours'
+            id='workhours'
             required
           />
             <button type='submit' className='btn btn-primary btn-change-role'>Assign User to Project</button>
