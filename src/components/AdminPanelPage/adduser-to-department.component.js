@@ -35,14 +35,14 @@ const AddUserToDepartment = () => {
     pass: "Invalid username or password"
   };
 
-  const addUserToProject = async (pname, dep_id) => {
+  const addUserToProject = async (username, departmentname) => {
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json'},
-      //body: JSON.stringify({"project-name": pname, "department-id":parseInt(dep_id)})
+      body: JSON.stringify({"username": username, "departmentName": departmentname})
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    const res = await fetch(base_url + '/admin/works-in/create-relation/' + parseInt(pname) + '/' + parseInt(dep_id), requestOptions)
+    const res = await fetch(base_url + '/admin/works-in/create-relation/', requestOptions)
     //const data = await res.json()
     //
     if(res.status === 200){
@@ -60,26 +60,19 @@ const AddUserToDepartment = () => {
     //Prevent page reload
     event.preventDefault();
     
-    var user_id = document.getElementById("userid").value;
-    var department_id = document.getElementById("departmentid").value;
+    var user_name = document.getElementById("username").value;
+    var department_name = document.getElementById("departmentname").value;
 
-    
-
-    
-    
-    console.log(user_id)
-    console.log(department_id)
-    //console.log(JSON.stringify({"username": uname, "authority":auth}))
+    console.log(user_name)
+    console.log(department_name)
+    console.log(JSON.stringify({"username": user_name, "departmentName":department_name}))
     
     addUserToProject(user_id, department_id)
     
     
   };
 
-  /* const renderErrorMessage = (name) =>
-  name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    ); */
+  
 
     return (
       <div className='container-all'>
@@ -87,25 +80,25 @@ const AddUserToDepartment = () => {
           <hr className='hr-add-user'></hr>
           <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label>User ID</label>
+          <label>User Name</label>
           <input
             type="text"
             className="form-control"
             placeholder=""
             name = "uname"
             required
-            id='userid'
+            id='username'
           />
         </div>
         <div className="mb-3">
-          <label>Department ID</label>
+          <label>Department Name</label>
           <input
             type="text"
             className="form-control"
             placeholder=""
             name = "uname"
             required
-            id='departmentid'
+            id='departmentname'
           />
           
         </div>
