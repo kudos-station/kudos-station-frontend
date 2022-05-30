@@ -35,14 +35,14 @@ const AddProject = () => {
     pass: "Invalid username or password"
   };
 
-  const addProject = async (pname, dep_id) => {
+  const addProject = async (projectName, departmentName) => {
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json'},
-      body: JSON.stringify({"project-name": pname, "department-id":parseInt(dep_id)})
+      body: JSON.stringify({"projectName": projectName, "departmentName":departmentName})
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    const res = await fetch(base_url + '/admin/project/create-project/' + pname + '/' + parseInt(dep_id), requestOptions)
+    const res = await fetch(base_url + '/admin/project/create-project/', requestOptions)
     //const data = await res.json()
     //
     if(res.status === 200){
@@ -61,25 +61,20 @@ const AddProject = () => {
     event.preventDefault();
     
     var projectName = document.getElementById("pname").value;
-    var departmend_id = document.getElementById("did").value;
+    var departmentName = document.getElementById("dname").value;
 
     
 
     
     
     console.log(projectName)
-    console.log(departmend_id)
-    //console.log(JSON.stringify({"username": uname, "authority":auth}))
+    console.log(departmentName)
+    console.log(JSON.stringify({"projectName": projectName, "departmentName":departmentName}))
     
-    addProject(projectName, departmend_id)
+    addProject(projectName, departmentName)
     
     
   };
-
-  /* const renderErrorMessage = (name) =>
-  name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    ); */
 
     return (
       <div className='container-all'>
@@ -98,14 +93,14 @@ const AddProject = () => {
           />
         </div>
         <div className="mb-3">
-          <label>Controlling Department ID</label>
+          <label>Controlling Department Name</label>
           <input
             type="text"
             className="form-control"
             placeholder=""
             name = "uname"
             required
-            id='did'
+            id='dname'
           />
           
         </div>
