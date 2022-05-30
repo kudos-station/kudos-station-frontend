@@ -36,40 +36,31 @@ const AddDepartment = () => {
     pass: "Invalid username or password"
   };
 
-  // const handleSubmit = (event) => {
-  //   //Prevent page reload
-  //   event.preventDefault();
-
-  //   var { uname, pass } = document.forms[0];
-
-  //   const combined = uname.value + ':' + pass.value;
-  //   const encoded = 'Basic ' + window.btoa(combined)
-  //   fetchUser(encoded)
-  // };
+  
 
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
     
     var department_name = document.getElementById("department_name").value;
-    var manager_id = parseInt(document.getElementById("manager_id").value);
+    var manager_name = document.getElementById("manager_name").value;
     
     
-    addDepartment(department_name, manager_id)
+    addDepartment(department_name, manager_name)
     
     
   };
 
-  const addDepartment = async (name, mng_id) => {
+  const addDepartment = async (departmentName, managerName) => {
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json'},
-      //body: JSON.stringify({"firstName": name, "lastName": surname, "username": userName, "password": password, "authority":authority})
+      body: JSON.stringify({"departmentName": departmentName, "managerName": managerName})
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(name)
-    console.log(mng_id + 34)
-    const res = await fetch(base_url + '/admin/project/create-department/' + name + "/" + mng_id, requestOptions)
+    console.log(departmentName)
+    console.log(managerName)
+    const res = await fetch(base_url + '/admin/project/create-department/', requestOptions)
     //const data = await res.json()
     //
     if(res.status === 200){
@@ -80,11 +71,6 @@ const AddDepartment = () => {
       
     }
   }
-
-  /* const renderErrorMessage = (name) =>
-  name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    ); */
 
     return (
       <div className='container-all'>
@@ -103,13 +89,13 @@ const AddDepartment = () => {
           />
         </div>
         <div className="mb-3">
-          <label>Manager ID</label>
+          <label>Manager Name</label>
           <input
           type="text"
           className="form-control"
           placeholder=""
           name = "mid"
-          id='manager_id'
+          id='manager_name'
           required/>
           
           
