@@ -13,6 +13,7 @@ import KudosByDepartment from './components/FilterPage/kudosByDepartment.compone
 import UsersByDepartment from './components/FilterPage/usersByDepartment.component'
 import UsersProjectWithMaxKudos from './components/FilterPage/usersProjectWithMaxKudos.component'
 import UsersByProject from './components/FilterPage/usersByProject.component'
+import SearchedProfile from './components/searchedProfile.component'
 
 function App() {
   const [currentNavbar, setCurrentNavbar] = useState(null);
@@ -45,6 +46,8 @@ function App() {
               <Route path="/usersByDepartment" element={<UsersByDepartment />} />
               <Route path="/usersProjectWithMaxKudos" element={<UsersProjectWithMaxKudos />} />
               <Route path="/usersByProject" element={<UsersByProject />} />
+              <Route path="/searchedProfile" element={<SearchedProfile />} />
+
             </Routes>
           </div>
         </div>
