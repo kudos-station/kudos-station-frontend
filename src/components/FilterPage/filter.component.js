@@ -25,6 +25,12 @@ const Filter = () => {
     var { department2 } = document.forms[2];
     sendDepartment2(department2.value)
   }
+  const onClick3 = async (e) => {
+    e.preventDefault();
+    var { kudosType } = document.forms[3];
+    sendProjectsOfUser(kudosType.value)  
+  }
+
   const sendDepartment2 = async (department2) => {
     const requestOptions = {
       method: 'POST',
@@ -47,7 +53,24 @@ const Filter = () => {
       console.log('failed to send')
     }
   }
-
+  const sendProjectsOfUser = async (kudosType) => {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json' },
+    };
+    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
+    const res = await fetch(base_url + '/user/kudos/most-given-kudos-variation/' + kudosType  , requestOptions)
+    const data = await res.json()
+    if (res.status === 200) {
+      navigate('/usersProjectWithMaxKudos', {
+        state: {
+          datam: data
+        }
+      });
+    } else {
+      console.log('failed to send')
+    }
+  }
 
   const sendDepartment = async (department) => {
     const requestOptions = {
@@ -69,13 +92,6 @@ const Filter = () => {
     } else {
       console.log('failed to send')
     }
-  }
-
-
-  
-  const onClick3 = (e) => {
-    e.preventDefault();
-    navigate("/usersProjectWithMaxKudos");
   }
 
   const onClick4 = (e) => {
@@ -147,7 +163,7 @@ const Filter = () => {
                         type="text"
                         className="form-control"
                         placeholder="Enter Kudos Type"
-                        name = "recipient"
+                         name= "kudosType"
                         required
                       />
                     </div>
