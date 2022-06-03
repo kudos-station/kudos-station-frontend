@@ -30,6 +30,11 @@ const Filter = () => {
     var { kudosType } = document.forms[3];
     sendProjectsOfUser(kudosType.value)  
   }
+  const onClick4 = async (e) => {
+    e.preventDefault();
+    var { projectName } = document.forms[4];
+    sendUserByProject(projectName.value)
+  }
 
   const sendDepartment2 = async (department2) => {
     const requestOptions = {
@@ -71,6 +76,25 @@ const Filter = () => {
       console.log('failed to send')
     }
   }
+  const sendUserByProject = async (projectName) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ "projectName": projectName })
+    };
+    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
+    const res = await fetch(base_url + '/user/project/obtained-all-kudos-variation/sent-any-kudos/', requestOptions)
+    const data = await res.json()
+    if (res.status === 200) {
+      navigate('/usersByProject', {
+        state: {
+          datam: data
+        }
+      });
+    } else {
+      console.log('failed to send')
+    }
+  }
 
   const sendDepartment = async (department) => {
     const requestOptions = {
@@ -94,12 +118,7 @@ const Filter = () => {
     }
   }
 
-  const onClick4 = (e) => {
-    e.preventDefault();
-    console.log("Im inside onclick 4");
-    navigate("/usersByProject");
-    
-  }
+
 
     return (
       <div>
@@ -185,7 +204,7 @@ const Filter = () => {
                         type="text"
                         className="form-control"
                         placeholder="Enter Project"
-                        name = "recipient"
+                  name= "projectName"
                         required
                       />
                     </div>

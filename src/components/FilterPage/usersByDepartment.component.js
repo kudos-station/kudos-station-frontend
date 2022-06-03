@@ -22,7 +22,7 @@ function UsersByDepartment() {
         <>
             <div className="usersByDepartmentComponent">
                 <div id="users" >
-                    <h1 className="text-center"> Filtered Uasers </h1>
+                    <h1 className="text-center"> Filtered Users </h1>
                     <p> These users are working on kudos station developlement department, also they recieved all variations of possible kudoses </p>
                     <div id="horizontalLine"  ></div>
                     {users.map(users => <p>{users}</p>)}
