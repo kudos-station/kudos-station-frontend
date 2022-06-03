@@ -16,8 +16,6 @@ function SearchedProfile() {
     const location = useLocation();
     const user = location.state.datam["username"]
 
-
-
     const [dataKudos, setDataKudos] = useState([{}])
     const [dataSentKudos, setDataSendKudos] = useState([{}])
 
@@ -29,13 +27,13 @@ function SearchedProfile() {
         return decoded
     }
 
-    const getSentKudos = async (username) => {
+    const getSentKudos = async (user) => {
         const requestOptions = {
             method: 'GET',
             headers: { 'Authorization': getCookie('kudos-auth') },
         };
         const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-        const sentKudos = await fetch(base_url + '/user/kudos/sent/' + username + '/' + '1', requestOptions)
+        const sentKudos = await fetch(base_url + '/user/kudos/sent/' + user + '/' + '1', requestOptions)
         const dataSentKudos = await sentKudos.json()
         const normalizedSentData = await normalizeDataDate(dataSentKudos)
 
@@ -46,13 +44,13 @@ function SearchedProfile() {
             console.log("failed")
         }
     }
-    const getRecievedKudos = async (username) => {
+    const getRecievedKudos = async (user) => {
         const requestOptions = {
             method: 'GET',
             headers: { 'Authorization': getCookie('kudos-auth') },
         };
         const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-        const resKudos = await fetch(base_url + '/user/kudos/received/' + username + '/' + '1', requestOptions)
+        const resKudos = await fetch(base_url + '/user/kudos/received/' + user + '/' + '1', requestOptions)
         const dataKudos = await resKudos.json()
         const normalizedData = await normalizeDataDate(dataKudos)
 
@@ -161,9 +159,9 @@ function SearchedProfile() {
 
 
     useEffect(() => {
-        getUser()
-        getSentKudos(getSender())
-        getRecievedKudos(getSender())
+        getUser(user)
+        getSentKudos(user)
+        getRecievedKudos(user)
     }, [window.location.pathname]);
 
     const [currentUserName, setCurrentUserName] = useState("")

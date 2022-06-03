@@ -60,7 +60,7 @@ const KudosNavbar = () => {
 								name="searchB"
 								required
 							/>
-					<button type="submit" className="btn btn-primary" style={{ "width": "90px", "margin-right":"10px" }}>
+							<button type="submit" className="btn btn-primary" style={{ "width": "90px", "margin-right":"10px" }}>
 								Search
 							</button>
 
