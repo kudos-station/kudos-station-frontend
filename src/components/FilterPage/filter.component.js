@@ -27,13 +27,18 @@ const Filter = () => {
   }
   const onClick3 = async (e) => {
     e.preventDefault();
-    var { kudosType } = document.forms[3];
+    var { kudosType } = document.forms[4];
     sendProjectsOfUser(kudosType.value)  
   }
   const onClick4 = async (e) => {
     e.preventDefault();
-    var { projectName } = document.forms[4];
+    var { projectName } = document.forms[5];
     sendUserByProject(projectName.value)
+  }
+  const onClick5 = async (e) => {
+    e.preventDefault();
+    var { userKudosType } = document.forms[3];
+    sendUserByProject(userKudosType.value)
   }
 
   const sendDepartment2 = async (department2) => {
@@ -51,7 +56,8 @@ const Filter = () => {
       console.log("geldi mi" + JSON.stringify(data["usernames"]))
       navigate('/usersByDepartment', {
         state: {
-          datam: data
+          datam: data,
+          dName: department2
         }
       });
     } else {
@@ -110,7 +116,8 @@ const Filter = () => {
       setInputDepartment(JSON.stringify(data));
       navigate('/kudosByDepartment', {
         state: {
-          datam: JSON.stringify(data)
+          datam: JSON.stringify(data),
+          dName: department
         }
       });
     } else {
@@ -167,6 +174,30 @@ const Filter = () => {
               </div>
             </form>
 
+
+
+          <form name="form5" onSubmit={onClick5}>
+            <div className="filterComponent2" id="cnk">
+              <h3>Filter Users by Kudos Type</h3>
+              <p>Shows users who has sent at least 5 given kudoses, but has not sent more than 10.</p>
+              <div className="mb-3">
+                <label>Project</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Kudos"
+                  name="userKudosType"
+                  required
+                />
+              </div>
+              <div className="d-grid">
+                <button type="submit" className="btn btn-primary">
+                  Filter
+                </button>
+              </div>
+            </div>
+          </form>
+
           </div>
           
           <br></br>
@@ -175,7 +206,7 @@ const Filter = () => {
               <form name="form3" onSubmit = {onClick3}>
                 <div className="filterComponent3" id="cnk">
                   <h3>Filter User's Projects by # of Kudos</h3>
-                  <p>Prints the person who gets the most kudos given kudos type and the projects this person is currently working on.</p>
+                  <p>Shows the person who gets the most kudos given kudos type and the projects this person is currently working on.</p>
                     <div className="mb-3">
                       <label>Kudos Type</label>
                       <input
@@ -197,14 +228,14 @@ const Filter = () => {
             <form name="form4" onSubmit = {onClick4}>
                 <div className="filterComponent4" id="cnk">
                   <h3>Filter Users by Project</h3>
-                  <p>Prints users who work on the given project and are recieved all of the kudos types and sent any of the kudos type.</p>
+                  <p>Shows users who work on the given project and are recieved all of the kudos types and sent any of the kudos type.</p>
                     <div className="mb-3">
                       <label>Project</label>
                       <input
                         type="text"
                         className="form-control"
                         placeholder="Enter Project"
-                  name= "projectName"
+                         name= "projectName"
                         required
                       />
                     </div>
@@ -215,9 +246,10 @@ const Filter = () => {
                   </div>
                 </div>
               </form>
-        </div>
-      
 
+        </div>
+
+    
       </div>
     );
   };

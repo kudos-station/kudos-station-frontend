@@ -6,6 +6,7 @@ const KudosByDepartment = () => {
     const location = useLocation();
     const [called, setCalled] = useState(0)
     const [kudos, setKudos] = useState([{}])
+    const departmentName = location.state.dName;
 
     const normalizeDataDate = async (data) => {
         for (let i = 0; i < data.length; i++) {
@@ -75,8 +76,8 @@ const KudosByDepartment = () => {
         <div className="main-page-component">
             <div className="container">
                 <h3 className="p-3 text-center"></h3>
-                <h1 className="text-center"> Filtered Kudos </h1>
-                <p>Shows the last 5 recent kudoses that are owned by users who work in all projects run by the given department.</p>
+                <h1 className="text-center"> {departmentName}</h1>
+                <p>Shows the last 5 recent kudoses that are owned by users who work in all projects run by the {departmentName}.</p>
                 <table className="table table-striped table-bordered" style={{ "marginTop": "15px" }}>
                     <thead>
                         <tr>
