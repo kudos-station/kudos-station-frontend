@@ -168,6 +168,7 @@ function SearchedProfile() {
     const [currentUserSurname, setCurrentUserSurname] = useState("")
     const [currentUserActiveProject, setCurrentUserActiveProject] = useState("")
     const [currentUserDepartment, setCurrentUserDepartment] = useState("")
+    const [currentSupervisor, setCurrentSupervisor] = useState("")
 
     const getUser = async (user) => {
         const requestOptions = {
@@ -183,8 +184,8 @@ function SearchedProfile() {
             setCurrentUserName(data["firstName"])
             setCurrentUserSurname(data["lastName"])
             setCurrentUserActiveProject(data["projects"])
-            setCurrentUserDepartment(data["department"])
-
+            setCurrentUserDepartment("" + data["department"])
+            setCurrentSupervisor(data["authorities"])
         } else {
             console.log("failed")
         }
@@ -207,15 +208,16 @@ function SearchedProfile() {
                     </div>
                 </div>
 
+
                 <div id="line_2"  ></div>
 
                 <div className="flex-parent">
                     <div id="lhs" >
-                        Active Project<br /><br /><br /> <br />Kudos' Recieved<br /><br /><br /><br /><br /><br />Kudos' Sent
+                        Active Project<br /><br /> Authorities <br /><br /><br /> <br />Kudos' Recieved<br /><br /><br /><br /><br /><br />Kudos' Sent<br /><br /><br />
                     </div>
-
                     <div id="rhs" >
                         {currentUserActiveProject}<br /><br />
+                        {currentSupervisor} <br /> <br />
                         <div id="table table-striped table-bordered" >
                             {kudosRecievedTable}
                         </div>
