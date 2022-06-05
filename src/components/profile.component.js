@@ -180,8 +180,8 @@ import { useEffect, useState } from 'react'
             if (res.status === 200) {
                 setCurrentUserName(data["firstName"])
                 setCurrentUserSurname(data["lastName"])
-                setCurrentUserActiveProject(data["projects"])
-                setCurrentUserDepartment("" + data["department"])
+                setCurrentUserActiveProject(data["projects"] + "")
+                setCurrentUserDepartment(data["department"] + "")
                 setCurrentSupervisor(data["authorities"])
 
             } else {
@@ -201,7 +201,7 @@ import { useEffect, useState } from 'react'
                           
                             <div id="userInfo" >
                             <h2 >{currentUserName} {currentUserSurname}</h2>
-                            <h6> {currentUserDepartment} </h6>
+                            <h6 >{currentUserDepartment} </h6>
                             <br />
                             </div>
                         </div>

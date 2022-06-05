@@ -183,8 +183,8 @@ function SearchedProfile() {
         if (res.status === 200) {
             setCurrentUserName(data["firstName"])
             setCurrentUserSurname(data["lastName"])
-            setCurrentUserActiveProject(data["projects"])
-            setCurrentUserDepartment("" + data["department"])
+            setCurrentUserActiveProject(data["projects"] + "")
+            setCurrentUserDepartment(data["department"] + "")
             setCurrentSupervisor(data["authorities"])
         } else {
             console.log("failed")
