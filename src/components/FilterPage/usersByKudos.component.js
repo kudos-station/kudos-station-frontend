@@ -18,13 +18,15 @@ function UsersByKudos() {
 
     const location = useLocation();
     const users = location.state.datam["usernames"]
-    const kudosType = location.state.kType;
+    const kt = location.state.kType;
+    const kudosType = kt.charAt(0).toUpperCase() + kt.slice(1);
+
     return (
         <>
             <div className="usersByDepartmentComponent">
                 <div id="users" >
                     <h1 className="text-center">{kudosType} </h1>
-                    <p> who has sent at least 5 {kudosType} kudoses, but has not sent more than 10 </p>
+                    <p> Who has sent at least 5 {kudosType} kudoses, but has not sent more than 10 </p>
                     <div id="horizontalLine"  ></div>
                     {users.map(users => <p>{users}</p>)}
                     <br></br>

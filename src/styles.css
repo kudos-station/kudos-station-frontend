@@ -366,3 +366,7 @@
   justify-content: flex-end;
   gap: 30px;
 }
+.Same {
+  display: inline-block;
+}
+
