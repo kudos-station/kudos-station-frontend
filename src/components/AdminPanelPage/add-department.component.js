@@ -2,9 +2,18 @@ import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
 import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
+
 
 
 const AddDepartment = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!getCookie('kudos-auth')){    
+        navigate("/login");
+    }
+},[])
 
   const handleSubmit = (event) => {
     //Prevent page reload
@@ -20,14 +29,15 @@ const AddDepartment = () => {
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json'},
-      body: JSON.stringify({"departmentName": departmentName, "managerName": managerName})
+      body: JSON.stringify({"departmentName": departmentName, "managerUsername": managerName})
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    const res = await fetch(base_url + '/admin/department/create-department/', requestOptions)
+    
+    const res = await fetch(base_url + '/admin/department/create-department', requestOptions)
     if(res.status === 201){
       Swal.fire({
         title: 'Success!',
-        text: 'Department has been added.',
+        text: 'Department has been created.',
         icon: 'success',
         confirmButtonText: 'OK',
         confirmButtonColor: '#167bff'
@@ -35,7 +45,7 @@ const AddDepartment = () => {
     }else{
       Swal.fire({
         title: 'Failed!',
-        text: 'Adding department has failed.',
+        text: 'Creating department has failed.',
         icon: 'error',
         confirmButtonText: 'OK',
         confirmButtonColor: '#167bff'
@@ -45,7 +55,7 @@ const AddDepartment = () => {
 
     return (
       <div className='container-all'>
-          <h3 className='add-user-title'>Add Department</h3>
+          <h3 className='add-user-title'>Create Department</h3>
           <hr className='hr-add-user'></hr>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -60,7 +70,7 @@ const AddDepartment = () => {
           />
         </div>
         <div className="mb-3">
-          <label>Manager Name</label>
+          <label>Manager Username</label>
           <input
           type="text"
           className="form-control"
@@ -74,7 +84,7 @@ const AddDepartment = () => {
        
         <div className="d-grid">
           <button type="submit" className="btn btn-primary btn-add-user">
-            Add Department
+          Create Department
           </button>
         </div>
         

@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "../../styles.css";
 import "../AdminPanelPage/admin-panel.css";
 import {  getCookie } from '../cookie-functions';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
 const AddUserToProject = () => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!getCookie('kudos-auth')){    
+        navigate("/login");
+    }
+},[])
 
   const handleSubmit = (event) => {
     //Prevent page reload
@@ -68,7 +76,7 @@ const AddUserToProject = () => {
           <div className="mb-3">    
             
            
-            <label>User Name</label>
+            <label>Username</label>
             <input
             type="text"
             className="form-control"

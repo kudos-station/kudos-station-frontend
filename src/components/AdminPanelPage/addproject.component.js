@@ -2,8 +2,17 @@ import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
 import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 const AddProject = () => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!getCookie('kudos-auth')){    
+        navigate("/login");
+    }
+},[])
 
   const addProject = async (projectName, departmentName) => {
     const requestOptions = {
@@ -12,13 +21,13 @@ const AddProject = () => {
       body: JSON.stringify({"projectName": projectName, "departmentName":departmentName})
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    const res = await fetch(base_url + '/admin/project/create-project/', requestOptions)
+    const res = await fetch(base_url + '/admin/project/create-project', requestOptions)
     //const data = await res.json()
     //
     if(res.status === 201){
       Swal.fire({
         title: 'Success!',
-        text: 'Project has been added.',
+        text: 'Project has been created.',
         icon: 'success',
         confirmButtonText: 'OK',
         confirmButtonColor: '#167bff'
@@ -26,7 +35,7 @@ const AddProject = () => {
     }else{
       Swal.fire({
         title: 'Failed!',
-        text: 'Adding Project has failed.',
+        text: 'Creating Project has failed.',
         icon: 'error',
         confirmButtonText: 'OK',
         confirmButtonColor: '#167bff'
@@ -47,7 +56,7 @@ const AddProject = () => {
 
     return (
       <div className='container-all'>
-          <h3 className='add-user-title'>Add Project</h3>
+          <h3 className='add-user-title'>Create Project</h3>
           <hr className='hr-add-user'></hr>
           <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -76,7 +85,7 @@ const AddProject = () => {
        
         <div className="d-grid">
           <button type="submit" className="btn btn-primary btn-add-user">
-            Add Project
+          Create Project
           </button>
         </div>
         

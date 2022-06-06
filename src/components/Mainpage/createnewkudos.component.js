@@ -39,7 +39,7 @@ const CreateNewKudos = () => {
     if(res.status === 200){
       return data["usernames"]
     }else{
-      console.log("failed")
+      
       return
     }
   }
@@ -56,7 +56,7 @@ const CreateNewKudos = () => {
     if(res.status === 200){
       return data["usernames"]
     }else{
-      console.log("failed")
+      
       return
     }
   }
@@ -71,8 +71,6 @@ const CreateNewKudos = () => {
     const data = await res.json()
     if(res.status === 200){
       setKudosVar(data["kudosVariations"])
-    }else{
-      console.log("failed")
     }
   }
     const sendKudos = async (sender, recipient, kudosVariation) => {
@@ -80,7 +78,7 @@ const CreateNewKudos = () => {
           method: 'POST',
           headers: {'Authorization': getCookie('kudos-auth')}
         };
-        console.log(kudosVariation)
+        
         const base_url = process.env.REACT_APP_KUDOS_BASE_URL
         const res = await fetch(base_url + '/user/send-kudos/' + sender + '/' + recipient + '/' + kudosVariation, requestOptions)
         if(res.status !== 200){
@@ -126,7 +124,7 @@ const CreateNewKudos = () => {
       var { projectName } = document.forms[2];
       if(sender === projectName.value) return
       const usersInPj = await getUsersInProject(projectName.value)
-      console.log(usersInPj[0])
+      
       for(let i = 0; i<usersInPj.length; i++){
         sendKudos(sender, usersInPj[i], selectedKudosProject)
       }
@@ -153,7 +151,7 @@ const CreateNewKudos = () => {
       var { depName } = document.forms[3];
       if(sender === depName.value) return
       const usersInDep = await getUsersInDep(depName.value)
-      console.log(usersInDep)
+      
       for(let i = 0; i<usersInDep.length; i++){
         sendKudos(sender, usersInDep[i], selectedKudosDep)
       }
