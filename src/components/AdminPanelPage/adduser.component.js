@@ -21,14 +21,14 @@ const AddUser = () => {
     
     
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(process.env.REACT_APP_KUDOS_BASE_URL + "     :Base url");    
-    console.log(getCookie('kudos-auth') + "          :cookie");
+    
     
     const res = await fetch(base_url + '/admin/create-user', requestOptions)
     //const data = await res.json()
     //
     if(res.status === 201){
       console.log("successful")
+      navigate("/admin-panel");
       
     }else{
       console.log("failed")

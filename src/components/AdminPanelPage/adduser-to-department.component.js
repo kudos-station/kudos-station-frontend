@@ -47,6 +47,7 @@ const AddUserToDepartment = () => {
     //
     if(res.status === 201){
       console.log("successful")
+      navigate("/admin-panel");
       
     }else{
       console.log("failed")

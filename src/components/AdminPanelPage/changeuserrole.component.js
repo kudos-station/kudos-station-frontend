@@ -47,6 +47,7 @@ const ChangeUserRole = () => {
     //
     if(res.status === 200){
       console.log("successful")
+      navigate("/admin-panel");
       
     }else{
       console.log("failed")
