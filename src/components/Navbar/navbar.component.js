@@ -1,9 +1,43 @@
 import React from 'react'
 import { Navbar, Nav, Form, Button, Container, FormControl } from 'react-bootstrap';
 import LogOutButton from './logoutbutton.component';
-
+import { getCookie } from './/../cookie-functions';
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 const KudosNavbar = () => {
+	
+	const navigate = useNavigate();
+	useEffect(() => {
+		if (!getCookie('kudos-auth')) {
+			navigate("/login");
+		}
+	}, [])
 
+	const onClickSearch = async (e) => {
+		e.preventDefault();
+		var { searchB } = document.forms[0];
+		sendUserProfile(searchB.value)
+
+	}
+	const sendUserProfile = async (searchB) => {
+		const requestOptions = {
+			method: 'GET',
+			headers: { 'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json' },
+		};
+		const base_url = process.env.REACT_APP_KUDOS_BASE_URL
+		const res = await fetch(base_url + '/user/profile/' + searchB, requestOptions)
+		const data = await res.json()
+		if (res.status === 200) {
+			navigate('/searchedProfile', {
+				state: {
+					datam: data
+				}
+			});
+		} else {
+			console.log('failed to send')
+		}
+	}
 	const kudosNavbar = (
 		<Navbar bg="light" expand="lg">
 		<Container fluid>
@@ -17,18 +51,22 @@ const KudosNavbar = () => {
 				<Nav.Link className="border-left pl-2 ml-auto" style={{"marginLeft": "auto", "marginRight": "10px"}} href="/profile">Profile</Nav.Link>
 			</Nav>
 
-	
+				<form onSubmit={onClickSearch} className = "d-flex">
+							<input
+								type="text"
+								className="me-2"
+								placeholder="Search user"
+								style={{ "width": "100px" }}
+								name="searchB"
+								required
+							/>
+							<button type="submit" className="btn btn-primary" style={{ "width": "90px", "margin-right":"10px" }}>
+								Search
+							</button>
 
-			<Form className="d-flex">
-				<FormControl
-				type="search"
-				placeholder="Search"
-				className="me-2"
-				aria-label="Search"
-				style={{"width": "200px", "border": "1px solid #167bff", "marginRight": "10px"}}
-				/>
-				<Button className="btn btn-primary" variant="outline-success" id="searchButton" style= {{"marginRight": "10px"}}>Search</Button>
-			</Form>
+				
+				</form>
+
 			{<LogOutButton />}
 		</Container>
 		</Navbar>

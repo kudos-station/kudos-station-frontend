@@ -165,6 +165,7 @@ import { useEffect, useState } from 'react'
         const [currentUserSurname, setCurrentUserSurname] = useState("")
         const [currentUserActiveProject, setCurrentUserActiveProject] = useState("")
         const [currentUserDepartment, setCurrentUserDepartment] = useState("")
+        const [currentSupervisor, setCurrentSupervisor] = useState("")
 
         const getUser = async () => {
             const requestOptions = {
@@ -179,8 +180,9 @@ import { useEffect, useState } from 'react'
             if (res.status === 200) {
                 setCurrentUserName(data["firstName"])
                 setCurrentUserSurname(data["lastName"])
-                setCurrentUserActiveProject(data["projects"])
-                setCurrentUserDepartment(data["department"])
+                setCurrentUserActiveProject(data["projects"] + "")
+                setCurrentUserDepartment(data["department"] + "")
+                setCurrentSupervisor(data["authorities"])
 
             } else {
                 console.log("failed")
@@ -199,20 +201,21 @@ import { useEffect, useState } from 'react'
                           
                             <div id="userInfo" >
                             <h2 >{currentUserName} {currentUserSurname}</h2>
-                            <h6> {currentUserDepartment} </h6>
+                            <h6 >{currentUserDepartment} </h6>
                             <br />
                             </div>
                         </div>
+                        
 
                         <div id="line_2"  ></div>
 
                          <div className="flex-parent">
                             <div id="lhs" >
-                            Active Project<br /><br /><br /> <br />Kudos' Recieved<br /><br /><br /><br /><br /><br />Kudos' Sent
+                            Active Project<br /><br /> Authorities <br /><br /><br /> <br />Kudos' Recieved<br /><br /><br /><br /><br /><br />Kudos' Sent<br /><br /><br />  
                             </div>
-
                             <div id="rhs" >
                             {currentUserActiveProject}<br /><br />
+                            {currentSupervisor} <br /> <br />
                                  <div id= "table table-striped table-bordered" >
                                     {kudosRecievedTable}
                                 </div> 
