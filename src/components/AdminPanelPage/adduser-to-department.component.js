@@ -1,39 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
-import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 const AddUserToDepartment = () => {
-  const [errorMessages, setErrorMessages] = useState({});
-  const navigate = useNavigate();
-
-  const fetchUser = async (encoded) => {
-    const requestOptions = {
-      method: 'GET',
-      headers: {'Authorization': encoded},
-    };
-    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(base_url)
-    const res = await fetch(base_url + '/user/profile/', requestOptions)
-    if(res.status === 401){
-      console.log('unauth')
-      setErrorMessages({name: "pass", message: errors.pass})
-      setInterval(() => {
-        setErrorMessages({name: "noerror", message: errors.noerror})
-      }, 3000)
-    }else{
-      
-      navigate("/home");
-      window.location.reload();
-    }
-  }
-
-  const errors = {
-    noerror : "",
-    pass: "Invalid username or password"
-  };
 
   const addUserToProject = async (username, departmentname) => {
     const requestOptions = {
@@ -43,19 +14,26 @@ const AddUserToDepartment = () => {
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
     const res = await fetch(base_url + '/admin/works-in/create-relation/', requestOptions)
-    //const data = await res.json()
-    //
     if(res.status === 201){
-      console.log("successful")
-      navigate("/admin-panel");
+      Swal.fire({
+        title: 'Success!',
+        text: 'User has been assigned to department.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      }) 
       
     }else{
-      console.log("failed")
+      Swal.fire({
+        title: 'Failed!',
+        text: 'Adding user to project has failed.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      }) 
       
     }
   }
-
-  
 
   const handleSubmit = (event) => {
     //Prevent page reload
@@ -110,15 +88,8 @@ const AddUserToDepartment = () => {
           </button>
         </div>
         
-      </form>
-          
-        
-        
-      </div>
-
-    
-        
-      
+      </form>   
+      </div>  
     );
   };
 
