@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "../../styles.css";
-//import { setCookie } from './cookie-functions';
+
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
@@ -9,26 +9,7 @@ const AdminPanel = () => {
   const [errorMessages, setErrorMessages] = useState({});
   const navigate = useNavigate();
 
-  const fetchUser = async (encoded) => {
-    const requestOptions = {
-      method: 'GET',
-      headers: {'Authorization': encoded},
-    };
-    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(base_url)
-    const res = await fetch(base_url + '/user/profile/', requestOptions)
-    if(res.status === 401){
-      console.log('unauth')
-      setErrorMessages({name: "pass", message: errors.pass})
-      setInterval(() => {
-        setErrorMessages({name: "noerror", message: errors.noerror})
-      }, 3000)
-    }else{
-     // setCookie('kudos-auth', encoded, 1)
-      navigate("/home");
-      window.location.reload();
-    }
-  }
+  
 
   const errors = {
     noerror : "",
@@ -39,11 +20,7 @@ const AdminPanel = () => {
     //Prevent page reload
     event.preventDefault();
 
-    var { uname, pass } = document.forms[0];
-
-    const combined = uname.value + ':' + pass.value;
-    const encoded = 'Basic ' + window.btoa(combined)
-    fetchUser(encoded)
+    
   };
 
   /* const renderErrorMessage = (name) =>

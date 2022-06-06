@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "../../styles.css";
-import { setCookie, getCookie } from '../cookie-functions';
+import {  getCookie } from '../cookie-functions';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
@@ -9,26 +9,7 @@ const AddUser = () => {
   const [errorMessages, setErrorMessages] = useState({});
   const navigate = useNavigate();
 
-  const fetchUser = async (encoded) => {
-    const requestOptions = {
-      method: 'GET',
-      headers: {'Authorization': encoded},
-    };
-    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(base_url)
-    const res = await fetch(base_url + '/user/profile/', requestOptions)
-    if(res.status === 401){
-      console.log('unauth')
-      setErrorMessages({name: "pass", message: errors.pass})
-      setInterval(() => {
-        setErrorMessages({name: "noerror", message: errors.noerror})
-      }, 3000)
-    }else{
-      setCookie('kudos-auth', encoded, 1)
-      navigate("/home");
-      window.location.reload();
-    }
-  }
+ 
 
   const addUser = async (name, surname, userName, password, authority) => {
     const requestOptions = {
@@ -36,16 +17,22 @@ const AddUser = () => {
       headers: {'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json'},
       body: JSON.stringify({"firstName": name, "lastName": surname, "username": userName, "password": password, "authority":authority})
     };
+    
+    
+    
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
+    console.log(process.env.REACT_APP_KUDOS_BASE_URL + "     :Base url");    
+    console.log(getCookie('kudos-auth') + "          :cookie");
+    
     const res = await fetch(base_url + '/admin/create-user', requestOptions)
     //const data = await res.json()
     //
-    if(res.status === 200){
+    if(res.status === 201){
       console.log("successful")
       
     }else{
       console.log("failed")
-      
+      console.log(res.status);
     }
   }
 

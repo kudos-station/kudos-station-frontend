@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "../../styles.css";
-import { setCookie, getCookie } from '../cookie-functions';
+import {  getCookie } from '../cookie-functions';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const AddDepartment = () => {
         setErrorMessages({name: "noerror", message: errors.noerror})
       }, 3000)
     }else{
-      setCookie('kudos-auth', encoded, 1)
+      
       navigate("/home");
       window.location.reload();
     }
@@ -63,7 +63,7 @@ const AddDepartment = () => {
     const res = await fetch(base_url + '/admin/project/create-department/', requestOptions)
     //const data = await res.json()
     //
-    if(res.status === 200){
+    if(res.status === 201){
       console.log("successful")
       
     }else{

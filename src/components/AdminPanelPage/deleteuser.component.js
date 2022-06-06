@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "../../styles.css";
-import { setCookie, getCookie } from '../cookie-functions';
+import {  getCookie } from '../cookie-functions';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ const DeleteUser = () => {
         setErrorMessages({name: "noerror", message: errors.noerror})
       }, 3000)
     }else{
-      setCookie('kudos-auth', encoded, 1)
+      
       navigate("/home");
       window.location.reload();
     }
@@ -64,7 +64,7 @@ const DeleteUser = () => {
 
     
     console.log(uname)
-    //deleteUser(uname)
+    deleteUser(uname)
   };
 
   
