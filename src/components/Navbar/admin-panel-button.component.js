@@ -40,13 +40,12 @@ const AdminPanelButton = () => {
     }
     if(role === 1){
         return(
-        
             <Button 
             className="btn btn-primary" 
             id='panel-button'
-            style= {{"marginRight": "10px", "width": "150px"}}
+            style= {{"marginRight": "10px", "width": "150px", "height": "50px"}}
             onClick={handleAdminPanel}>
-            Admin Panel
+            Admin
             </Button>
         )
     }
