@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { getCookie } from '../cookie-functions'
 import { Dropdown, DropdownButton } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 
 const CreateNewKudos = () => {
@@ -36,7 +37,6 @@ const CreateNewKudos = () => {
     const res = await fetch(base_url + '/user/projects-by-name', requestOptions)
     const data = await res.json()
     if(res.status === 200){
-      console.log(data["usernames"])
       return data["usernames"]
     }else{
       console.log("failed")
@@ -54,7 +54,6 @@ const CreateNewKudos = () => {
     const res = await fetch(base_url + '/user/departments-by-name', requestOptions)
     const data = await res.json()
     if(res.status === 200){
-      console.log(data["usernames"])
       return data["usernames"]
     }else{
       console.log("failed")
@@ -75,9 +74,6 @@ const CreateNewKudos = () => {
     }else{
       console.log("failed")
     }
-  }
-  function delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
   }
     const sendKudos = async (sender, recipient, kudosVariation) => {
         const requestOptions = {
@@ -106,7 +102,21 @@ const CreateNewKudos = () => {
         if(sender === recipient.value) return
         sendKudos(sender, recipient.value, selectedKudos)
         if(succesStatus === 0){
-          delay(1000).then(() => navigate("/home"));
+          Swal.fire({
+            title: 'Success!',
+            text: 'Sending kudos was successful.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#167bff'
+          }) 
+        }else{
+          Swal.fire({
+            title: 'Failed!',
+            text: 'Sending kudos has failed.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#167bff'
+          }) 
         }
         }
 
@@ -121,8 +131,20 @@ const CreateNewKudos = () => {
         sendKudos(sender, usersInPj[i], selectedKudosProject)
       }
       if(succesStatus === 0){
-        delay(1000).then(() => navigate("/home"));
-      }          
+        Swal.fire({
+          title: 'Success!',
+          text: 'Sending kudos was successful.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }) 
+      }else{
+        Swal.fire({
+          title: 'Failed!',
+          text: 'Sending kudos has failed.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        }) 
+      }         
     }
 
     const onClickDep = async (e) => {
@@ -136,8 +158,20 @@ const CreateNewKudos = () => {
         sendKudos(sender, usersInDep[i], selectedKudosDep)
       }
       if(succesStatus === 0){
-        delay(1000).then(() => navigate("/home"));
-      }          
+        Swal.fire({
+          title: 'Success!',
+          text: 'Sending kudos was successful.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }) 
+      }else{
+        Swal.fire({
+          title: 'Failed!',
+          text: 'Sending kudos has failed.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        }) 
+      }         
     }
         
       const changeSelectedKudos = (val) => {

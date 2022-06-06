@@ -1,15 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
-import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 
 const AddUser = () => {
-  const [errorMessages, setErrorMessages] = useState({});
-  const navigate = useNavigate();
-
- 
 
   const addUser = async (name, surname, userName, password, authority) => {
     const requestOptions = {
@@ -17,29 +12,27 @@ const AddUser = () => {
       headers: {'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json'},
       body: JSON.stringify({"firstName": name, "lastName": surname, "username": userName, "password": password, "authority":authority})
     };
-    
-    
-    
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    
-    
     const res = await fetch(base_url + '/admin/create-user', requestOptions)
-    //const data = await res.json()
-    //
+
     if(res.status === 201){
-      console.log("successful")
-      navigate("/admin-panel");
-      
+      Swal.fire({
+        title: 'Success!',
+        text: 'User has been added.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      })      
     }else{
-      console.log("failed")
-      console.log(res.status);
+      Swal.fire({
+        title: 'Failed!',
+        text: 'Adding user has failed.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      })   
     }
   }
-
-  const errors = {
-    noerror : "",
-    pass: "Invalid username or password"
-  };
 
   const handleSubmit = (event) => {
     //Prevent page reload
@@ -57,19 +50,9 @@ const AddUser = () => {
     }else if(document.getElementById('user').checked) {
       auth = document.getElementById("user").value;
     }
-    
-    
-    console.log(JSON.stringify({"firstName": name, "lastName": sname, "username": uname, "password": pass, "authority":auth}))
     addUser(name, sname, uname, pass, auth)
-    
-    
+       
   };
-
-  /* const renderErrorMessage = (name) =>
-  name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    ); */
-
     return (
       <div className='container-all'>
           <h3 className='add-user-title'>Add New User</h3>
@@ -148,14 +131,8 @@ const AddUser = () => {
           </button>
         </div>
         
-      </form>
-          
-        
-        
-      </div>
-
-    
-        
+      </form>     
+      </div>      
       
     );
   };

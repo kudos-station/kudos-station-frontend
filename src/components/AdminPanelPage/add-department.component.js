@@ -1,53 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
-import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2'
 
 
 const AddDepartment = () => {
-  const [errorMessages, setErrorMessages] = useState({});
-  const navigate = useNavigate();
-
-  const fetchUser = async (encoded) => {
-    const requestOptions = {
-      method: 'GET',
-      headers: {'Authorization': encoded},
-    };
-    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(base_url)
-    const res = await fetch(base_url + '/user/profile/', requestOptions)
-    if(res.status === 401){
-      console.log('unauth')
-      setErrorMessages({name: "pass", message: errors.pass})
-      setInterval(() => {
-        setErrorMessages({name: "noerror", message: errors.noerror})
-      }, 3000)
-    }else{
-      
-      navigate("/home");
-      window.location.reload();
-    }
-  }
-
-  const errors = {
-    noerror : "",
-    pass: "Invalid username or password"
-  };
-
-  
 
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
     
     var department_name = document.getElementById("department_name").value;
-    var manager_name = document.getElementById("manager_name").value;
-    
-    
-    addDepartment(department_name, manager_name)
-    
+    var manager_name = document.getElementById("manager_name").value; 
+    addDepartment(department_name, manager_name)   
     
   };
 
@@ -58,18 +23,23 @@ const AddDepartment = () => {
       body: JSON.stringify({"departmentName": departmentName, "managerName": managerName})
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(departmentName)
-    console.log(managerName)
-    const res = await fetch(base_url + '/admin/project/create-department/', requestOptions)
-    //const data = await res.json()
-    //
+    const res = await fetch(base_url + '/admin/department/create-department/', requestOptions)
     if(res.status === 201){
-      console.log("successful")
-      navigate("/admin-panel");
-      
+      Swal.fire({
+        title: 'Success!',
+        text: 'Department has been added.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      }) 
     }else{
-      console.log("failed")
-      
+      Swal.fire({
+        title: 'Failed!',
+        text: 'Adding department has failed.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      }) 
     }
   }
 

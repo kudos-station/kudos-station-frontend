@@ -1,39 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
-import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 
 const AddProject = () => {
-  const [errorMessages, setErrorMessages] = useState({});
-  const navigate = useNavigate();
-
-  const fetchUser = async (encoded) => {
-    const requestOptions = {
-      method: 'GET',
-      headers: {'Authorization': encoded},
-    };
-    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(base_url)
-    const res = await fetch(base_url + '/user/profile/', requestOptions)
-    if(res.status === 401){
-      console.log('unauth')
-      setErrorMessages({name: "pass", message: errors.pass})
-      setInterval(() => {
-        setErrorMessages({name: "noerror", message: errors.noerror})
-      }, 3000)
-    }else{
-      
-      navigate("/home");
-      window.location.reload();
-    }
-  }
-
-  const errors = {
-    noerror : "",
-    pass: "Invalid username or password"
-  };
 
   const addProject = async (projectName, departmentName) => {
     const requestOptions = {
@@ -46,16 +16,23 @@ const AddProject = () => {
     //const data = await res.json()
     //
     if(res.status === 201){
-      console.log("successful")
-      navigate("/admin-panel");
-      
+      Swal.fire({
+        title: 'Success!',
+        text: 'Project has been added.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      }) 
     }else{
-      console.log("failed")
-      
+      Swal.fire({
+        title: 'Failed!',
+        text: 'Adding Project has failed.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      })       
     }
   }
-
-  
 
   const handleSubmit = (event) => {
     //Prevent page reload
@@ -63,17 +40,8 @@ const AddProject = () => {
     
     var projectName = document.getElementById("pname").value;
     var departmentName = document.getElementById("dname").value;
-
-    
-
-    
-    
-    console.log(projectName)
-    console.log(departmentName)
-    console.log(JSON.stringify({"projectName": projectName, "departmentName":departmentName}))
     
     addProject(projectName, departmentName)
-    
     
   };
 

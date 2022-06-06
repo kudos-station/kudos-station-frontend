@@ -2,57 +2,34 @@ import React, { useState } from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 
 const DeleteUser = () => {
-  const [errorMessages, setErrorMessages] = useState({});
-  const navigate = useNavigate();
-
-  const fetchUser = async (encoded) => {
-    const requestOptions = {
-      method: 'GET',
-      headers: {'Authorization': encoded},
-    };
-    const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(base_url)
-    const res = await fetch(base_url + '/user/profile/', requestOptions)
-    if(res.status === 401){
-      console.log('unauth')
-      setErrorMessages({name: "pass", message: errors.pass})
-      setInterval(() => {
-        setErrorMessages({name: "noerror", message: errors.noerror})
-      }, 3000)
-    }else{
-      
-      navigate("/home");
-      window.location.reload();
-    }
-  }
-
-  const errors = {
-    noerror : "",
-    pass: "Invalid username or password"
-  };
 
   const deleteUser = async (userName) => {
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': getCookie('kudos-auth'), 'Content-Type': 'application/json'},
-      
-      //body: JSON.stringify({"username": userName, "authority":authority})
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(userName);
     const res = await fetch(base_url + '/admin/delete-user/' + userName, requestOptions)
-    //const data = await res.json()
-    //
+
     if(res.status === 200){
-      console.log("successful")
-      navigate("/admin-panel");
-      
+      Swal.fire({
+        title: 'Success!',
+        text: 'User has been deleted.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      }) 
     }else{
-      console.log("failed")
+      Swal.fire({
+        title: 'Failed!',
+        text: 'Removing the user has failed.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#167bff'
+      }) 
       
     }
   }
@@ -60,20 +37,9 @@ const DeleteUser = () => {
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-
     var uname = document.getElementById("userName").value;
-
-    
-    console.log(uname)
     deleteUser(uname)
   };
-
-  
-
-  /* const renderErrorMessage = (name) =>
-  name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    ); */
 
     return (
       <div className='container-all d-change-role'>
@@ -102,14 +68,9 @@ const DeleteUser = () => {
         </div>
         
       </form>
-          
-        
-        
+  
       </div>
 
-    
-        
-      
     );
   };
 

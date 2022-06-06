@@ -1,32 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "../../styles.css";
-
-import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 
 const AdminPanel = () => {
-  const [errorMessages, setErrorMessages] = useState({});
-  const navigate = useNavigate();
-
-  
-
-  const errors = {
-    noerror : "",
-    pass: "Invalid username or password"
-  };
-
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-
-    
-  };
-
-  /* const renderErrorMessage = (name) =>
-  name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    ); */
 
     return (
       <div className='container-all'>
@@ -72,18 +49,8 @@ const AdminPanel = () => {
         <div className="mb-3">
           <button className='btn btn-danger btn-ap'>Delete User</button>
         </div>
-        </Link>
-
-        
-        
-        
-        
-        
-      </div>
-
-    
-        
-      
+        </Link>   
+      </div>    
     );
   };
 
