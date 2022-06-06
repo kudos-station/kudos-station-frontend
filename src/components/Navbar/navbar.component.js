@@ -36,8 +36,6 @@ const KudosNavbar = () => {
 				}
 			});
 			window.location.reload();
-		} else {
-			console.log('failed to send')
 		}
 	}
 	const kudosNavbar = (

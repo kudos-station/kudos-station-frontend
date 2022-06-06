@@ -2,9 +2,18 @@ import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
 import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 
 const AddUserToDepartment = () => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!getCookie('kudos-auth')){    
+        navigate("/login");
+    }
+},[])
 
   const addUserToProject = async (username, departmentname) => {
     const requestOptions = {
@@ -26,7 +35,7 @@ const AddUserToDepartment = () => {
     }else{
       Swal.fire({
         title: 'Failed!',
-        text: 'Adding user to project has failed.',
+        text: 'Assigning user to department has failed.',
         icon: 'error',
         confirmButtonText: 'OK',
         confirmButtonColor: '#167bff'
@@ -41,10 +50,6 @@ const AddUserToDepartment = () => {
     
     var user_name = document.getElementById("username").value;
     var department_name = document.getElementById("departmentname").value;
-
-    console.log(user_name)
-    console.log(department_name)
-    console.log(JSON.stringify({"username": user_name, "departmentName":department_name}))
     
     addUserToProject(user_name, department_name)
     
@@ -55,11 +60,11 @@ const AddUserToDepartment = () => {
 
     return (
       <div className='container-all'>
-          <h3 className='add-user-title'>Add User to Department</h3>
+          <h3 className='add-user-title'>Assign User to Department</h3>
           <hr className='hr-add-user'></hr>
           <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label>User Name</label>
+          <label>Username</label>
           <input
             type="text"
             className="form-control"
@@ -84,7 +89,7 @@ const AddUserToDepartment = () => {
        
         <div className="d-grid">
           <button type="submit" className="btn btn-primary btn-add-user">
-            Add User to Department
+            Assign User to Department
           </button>
         </div>
         

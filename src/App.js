@@ -25,6 +25,10 @@ import AddUserToDepartment from './components/AdminPanelPage/adduser-to-departme
 import SearchedProfile from './components/searchedProfile.component'
 import UsersByKudos from './components/FilterPage/usersByKudos.component'
 import Scoreboard from './components/scoreboard.component'
+import DeleteProject from './components/AdminPanelPage/deleteproject.component'
+import RemoveUserFromDep from './components/AdminPanelPage/deleteuser-fromdepartment.component'
+import RemoveUserFromProj from './components/AdminPanelPage/deleteuser-fromproject.component'
+import DeleteDepartment from './components/AdminPanelPage/deletedepartment.component'
 
 function App() {
   const [currentNavbar, setCurrentNavbar] = useState(null);
@@ -62,6 +66,15 @@ function App() {
               <Route path="/admin-panel/add-user" element={<AddUser />} />
               <Route path="/admin-panel/change-user-role" element={<ChangeUserRole />} />
               <Route path="/admin-panel/delete-user" element={<DeleteUser />} />
+
+
+              <Route path="/admin-panel/delete-project" element={<DeleteProject />} />
+              <Route path="/admin-panel/delete-departmentr" element={<DeleteDepartment />} />
+              <Route path="/admin-panel/delete-user-from-project" element={<RemoveUserFromProj />} />
+              <Route path="/admin-panel/delete-user-from-department" element={<RemoveUserFromDep />} />
+              
+
+
               <Route path="/admin-panel/add-department" element={<AddDepartment />} />
               <Route path="/admin-panel/add-project" element={<AddProject />} />
               <Route path="/admin-panel/assign-user-to-project" element={<AddUserToProject />} />

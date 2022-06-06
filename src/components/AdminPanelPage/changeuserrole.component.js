@@ -2,9 +2,18 @@ import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
 import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 
 const ChangeUserRole = () => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!getCookie('kudos-auth')){    
+        navigate("/login");
+    }
+},[])
 
   const changeRole = async (userName, authority) => {
     const requestOptions = {
@@ -52,11 +61,11 @@ const ChangeUserRole = () => {
   };
 
     return (
-      <div className='container-all d-change-role'>
+      <div className='container-all '>
           <h3 className='add-user-title'>Change User Role</h3>
           <hr className='hr-add-user'></hr>
         <form onSubmit={handleSubmit}>
-            <label htmlFor='users' className='lbl-change-role'>Change role of:</label>
+            <label htmlFor='users' className='' style={{alignContent:'left'}}>Username</label>
             <br></br>
             <input
             type="text"
@@ -67,20 +76,15 @@ const ChangeUserRole = () => {
             id='userName'
             required
           />
-            <h6 className='change-role-h3'>to</h6>
-            {/* <input
-            type="text"
-            className="form-control"
-            placeholder=""
-            name = "sname"
-            autoComplete = "on"
-            required
-          /> */} 
-            <input type="radio" id="admin" name="ROLE" value="ROLE_ADMIN"  defaultChecked="true"/>
+            <h6 className='change-role-h3'>Authority</h6>
+           
+        <div className='center-radio-btn'>
+          <input type="radio" id="admin" name="ROLE" value="ROLE_ADMIN"  defaultChecked="true" className='radio-btn'/>
             <label htmlFor="admin">Admin</label>
-            <input type="radio" id="user" name="ROLE" value="ROLE_USER" />
+          <input type="radio" id="user" name="ROLE" value="ROLE_USER" className='radio-btn'/>
             <label htmlFor="user">User</label><br></br>
-            <button type='submit' className='btn btn-outline-primary btn-change-role'>Change Role</button>
+</div>
+            <button type='submit' className='btn btn-outline-primary btn-change-role'>Change User Role</button>
         </form>
 
       </div>    

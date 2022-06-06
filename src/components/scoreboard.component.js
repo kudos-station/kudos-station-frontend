@@ -26,10 +26,8 @@ const Scoreboard = () => {
         const data = await res.json()
         if(res.status === 200){
           setScoreBoard(data)
-          console.log(data)
+         
 
-        }else{
-          console.log("failed")
         }
       }
     return(

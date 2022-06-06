@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
 const DeleteUser = () => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!getCookie('kudos-auth')){    
+        navigate("/login");
+    }
+},[])
 
   const deleteUser = async (userName) => {
     const requestOptions = {
@@ -25,7 +33,7 @@ const DeleteUser = () => {
     }else{
       Swal.fire({
         title: 'Failed!',
-        text: 'Removing the user has failed.',
+        text: 'Deleting the user has failed.',
         icon: 'error',
         confirmButtonText: 'OK',
         confirmButtonColor: '#167bff'
@@ -42,13 +50,13 @@ const DeleteUser = () => {
   };
 
     return (
-      <div className='container-all d-change-role'>
+      <div className='container-all'>
           <h3 className='add-user-title'>Delete User</h3>
           <hr className='hr-add-user'></hr>
           <form onSubmit={handleSubmit}>
         
         <div className="mb-3">
-        <label>Delete user:</label>
+        <label>Username</label>
         <input
             type="text"
             className="form-control"

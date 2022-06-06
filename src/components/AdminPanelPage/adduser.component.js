@@ -2,9 +2,18 @@ import React from 'react'
 import "../../styles.css";
 import {  getCookie } from '../cookie-functions';
 import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 
 const AddUser = () => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!getCookie('kudos-auth')){    
+        navigate("/login");
+    }
+},[])
 
   const addUser = async (name, surname, userName, password, authority) => {
     const requestOptions = {
@@ -18,7 +27,7 @@ const AddUser = () => {
     if(res.status === 201){
       Swal.fire({
         title: 'Success!',
-        text: 'User has been added.',
+        text: 'User has been created.',
         icon: 'success',
         confirmButtonText: 'OK',
         confirmButtonColor: '#167bff'
@@ -26,7 +35,7 @@ const AddUser = () => {
     }else{
       Swal.fire({
         title: 'Failed!',
-        text: 'Adding user has failed.',
+        text: 'Creating user has failed.',
         icon: 'error',
         confirmButtonText: 'OK',
         confirmButtonColor: '#167bff'
@@ -55,7 +64,7 @@ const AddUser = () => {
   };
     return (
       <div className='container-all'>
-          <h3 className='add-user-title'>Add New User</h3>
+          <h3 className='add-user-title'>Create New User</h3>
           <hr className='hr-add-user'></hr>
           <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -83,7 +92,7 @@ const AddUser = () => {
           
         </div>
         <div className="mb-3">
-          <label>User Name</label>
+          <label>Username</label>
           <input
             type="text"
             className="form-control"
@@ -110,24 +119,19 @@ const AddUser = () => {
         </div>
 
         <div className="mb-3">
-          <label>Authority:</label>
+          <label>Authority</label>
         <br></br>
-          {/* <input
-            type="text"
-            className="form-control"
-            placeholder=""
-            name = "auth"
-            autoComplete = "on"
-            required
-          /> */}
-           <input type="radio" id="admin" name="ROLE" value="ROLE_ADMIN"  defaultChecked="true"/>
+         
+         <div className='center-radio-btn'>
+           <input type="radio" id="admin" name="ROLE" value="ROLE_ADMIN"  />
             <label htmlFor="admin">Admin</label>
-            <input type="radio" id="user" name="ROLE" value="ROLE_USER" />
+            <input type="radio" id="user" name="ROLE" value="ROLE_USER" defaultChecked="true"/>
             <label htmlFor="user">User</label><br></br>
+        </div>
         </div>
         <div className="d-grid">
           <button type="submit" className="btn btn-primary btn-add-user">
-            Add New User
+          Create New User
           </button>
         </div>
         
