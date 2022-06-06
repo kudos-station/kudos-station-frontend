@@ -1,10 +1,12 @@
 import React from 'react'
 import { Navbar, Nav, Form, Button, Container, FormControl } from 'react-bootstrap';
+import AdminPanelButton from './admin-panel-button.component';
 import LogOutButton from './logoutbutton.component';
 import { getCookie } from './/../cookie-functions';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
+
 const KudosNavbar = () => {
 	
 	const navigate = useNavigate();
@@ -68,13 +70,17 @@ const KudosNavbar = () => {
 				
 				</form>
 
+			{<AdminPanelButton />}
 			{<LogOutButton />}
+			
+			
 		</Container>
 		</Navbar>
 	)
 	return(
 	<>
 		{kudosNavbar}
+
     </>
 	)
 }

@@ -13,6 +13,15 @@ import KudosByDepartment from './components/FilterPage/kudosByDepartment.compone
 import UsersByDepartment from './components/FilterPage/usersByDepartment.component'
 import UsersProjectWithMaxKudos from './components/FilterPage/usersProjectWithMaxKudos.component'
 import UsersByProject from './components/FilterPage/usersByProject.component'
+
+import AdminPanel from './components/AdminPanelPage/admin-panel.component'
+import AddUser from './components/AdminPanelPage/adduser.component'
+import ChangeUserRole from './components/AdminPanelPage/changeuserrole.component'
+import DeleteUser from './components/AdminPanelPage/deleteuser.component'
+import AddDepartment from './components/AdminPanelPage/add-department.component'
+import AddProject from './components/AdminPanelPage/addproject.component'
+import AddUserToProject from './components/AdminPanelPage/adduser-to-project.component'
+import AddUserToDepartment from './components/AdminPanelPage/adduser-to-department.component'
 import SearchedProfile from './components/searchedProfile.component'
 import UsersByKudos from './components/FilterPage/usersByKudos.component'
 import Scoreboard from './components/scoreboard.component'
@@ -49,9 +58,16 @@ function App() {
               <Route path="/usersByDepartment" element={<UsersByDepartment />} />
               <Route path="/usersProjectWithMaxKudos" element={<UsersProjectWithMaxKudos />} />
               <Route path="/usersByProject" element={<UsersByProject />} />
+              <Route path="/admin-panel" element={<AdminPanel />} />
+              <Route path="/admin-panel/add-user" element={<AddUser />} />
+              <Route path="/admin-panel/change-user-role" element={<ChangeUserRole />} />
+              <Route path="/admin-panel/delete-user" element={<DeleteUser />} />
+              <Route path="/admin-panel/add-department" element={<AddDepartment />} />
+              <Route path="/admin-panel/add-project" element={<AddProject />} />
+              <Route path="/admin-panel/assign-user-to-project" element={<AddUserToProject />} />
+              <Route path="/admin-panel/add-user-to-department" element={<AddUserToDepartment />} />
               <Route path="/searchedProfile" element={<SearchedProfile />} />
               <Route path="/usersByKudos" element={<UsersByKudos />} />
-
             </Routes>
           </div>
         </div>
