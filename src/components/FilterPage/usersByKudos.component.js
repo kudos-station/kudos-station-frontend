@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 
 
-function UsersByDepartment() {
+function UsersByKudos() {
 
 
     const navigate = useNavigate();
@@ -18,13 +18,15 @@ function UsersByDepartment() {
 
     const location = useLocation();
     const users = location.state.datam["usernames"]
-    const departmentName = location.state.dName;
+    const kt = location.state.kType;
+    const kudosType = kt.charAt(0).toUpperCase() + kt.slice(1);
+
     return (
         <>
             <div className="usersByDepartmentComponent">
                 <div id="users" >
-                    <h1 className="text-center">{departmentName} </h1>
-                    <p> These users are working on {departmentName} department, and they recieved all possible variations of kudoses. </p>
+                    <h1 className="text-center">{kudosType} </h1>
+                    <p> Who has sent at least 2 {kudosType} kudoses, but has not sent more than 10. </p>
                     <div id="horizontalLine"  ></div>
                     <table className="table table-striped table-bordered" style= {{"marginTop":"15px"}}>
                         <thead>
@@ -44,13 +46,13 @@ function UsersByDepartment() {
                 </div>
 
             </div>
-            
-     
+
+
         </>
 
     );
 }
 
 
-export default UsersByDepartment;
+export default UsersByKudos;
 

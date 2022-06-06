@@ -11,6 +11,8 @@ const CreateNewKudos = () => {
   const [selectedKudos, setSelectedKudos] = useState("")
   const [selectedKudosProject, setSelectedKudosProject] = useState("")
   const [selectedKudosDep, setSelectedKudosDep] = useState("")
+  const [succesStatus, setSuccesStatus] = useState(0)
+
 
   const navigate = useNavigate();
     useEffect(() => {
@@ -74,6 +76,9 @@ const CreateNewKudos = () => {
       console.log("failed")
     }
   }
+  function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
     const sendKudos = async (sender, recipient, kudosVariation) => {
         const requestOptions = {
           method: 'POST',
@@ -82,10 +87,8 @@ const CreateNewKudos = () => {
         console.log(kudosVariation)
         const base_url = process.env.REACT_APP_KUDOS_BASE_URL
         const res = await fetch(base_url + '/user/send-kudos/' + sender + '/' + recipient + '/' + kudosVariation, requestOptions)
-        if(res.status === 200){
-          console.log('send kudos successful')          
-        }else{
-          console.log('failed to send')
+        if(res.status !== 200){
+          setSuccesStatus(succesStatus + 1)
         }
       }
     const getSender = () => {
@@ -102,7 +105,9 @@ const CreateNewKudos = () => {
         var { recipient } = document.forms[1];
         if(sender === recipient.value) return
         sendKudos(sender, recipient.value, selectedKudos)
-        
+        if(succesStatus === 0){
+          delay(1000).then(() => navigate("/home"));
+        }
         }
 
     const onClickProj = async (e) => {
@@ -114,6 +119,9 @@ const CreateNewKudos = () => {
       console.log(usersInPj[0])
       for(let i = 0; i<usersInPj.length; i++){
         sendKudos(sender, usersInPj[i], selectedKudosProject)
+      }
+      if(succesStatus === 0){
+        delay(1000).then(() => navigate("/home"));
       }          
     }
 
@@ -126,6 +134,9 @@ const CreateNewKudos = () => {
       console.log(usersInDep)
       for(let i = 0; i<usersInDep.length; i++){
         sendKudos(sender, usersInDep[i], selectedKudosDep)
+      }
+      if(succesStatus === 0){
+        delay(1000).then(() => navigate("/home"));
       }          
     }
         
@@ -149,16 +160,12 @@ const CreateNewKudos = () => {
       switch(variation) {
         case "fast":
           return "Fast"
-          break;
         case "team-player":
           return "Team Player"
-          break;
         case "respectful":
           return "Respectful"
-          break;
         default:
           return "Not Selected"
-          return
       }
     }
 

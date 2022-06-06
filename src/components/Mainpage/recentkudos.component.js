@@ -68,13 +68,10 @@ const [kudos, setKudos] = useState([{}])
     switch(variation) {
       case "fast":
         return "Fast"
-        break;
       case "team-player":
         return "Team Player"
-        break;
       case "respectful":
         return "Respectful"
-        break;
       default:
         return
     }

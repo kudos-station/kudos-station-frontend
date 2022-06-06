@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
+import { getCookie } from '../cookie-functions';
+import { useNavigate } from "react-router-dom";
 
 
 const KudosByDepartment = () => {
     const location = useLocation();
-    console.log(location.state.datam);
-    console.log( JSON.parse(location.state.datam))
+    const [called, setCalled] = useState(0)
+    const [kudos, setKudos] = useState([{}])
+    const departmentName = location.state.dName;
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(!getCookie('kudos-auth')){    
+            navigate("/login");
+        }
+    },[])
 
     const normalizeDataDate = async (data) => {
-
         for (let i = 0; i < data.length; i++) {
             var currEntry = data[i]
             currEntry["createdAt"] = await normalizeDateTime(currEntry["createdAt"])
@@ -44,28 +53,37 @@ const KudosByDepartment = () => {
         return (dt + '/' + month + '/' + year + ' ' + timeHour + ':' + timeMinutes + ':' + timeSecond)
     }
 
+    const displayNormalDate = async () => {
+        var currentKudos = JSON.parse(location.state.datam)
+        currentKudos = await normalizeDataDate(currentKudos)
+        setKudos(currentKudos)
+    }
+  
+    if(called === 0){
+        displayNormalDate()
+        setCalled(1)
+    }
+
     const correctFormat = (variation) => {
         switch (variation) {
             case "fast":
                 return "Fast"
-                break;
             case "team-player":
                 return "Team Player"
-                break;
             case "respectful":
                 return "Respectful"
-                break;
             default:
                 return
         }
     }
+
+
     return (
         <div className="main-page-component">
             <div className="container">
                 <h3 className="p-3 text-center"></h3>
-                <h1 className="text-center"> Filtered Kudos </h1>
-
-                <p>Shows the last 5 recent kudoses that are owned by users who work in all projects run by the given department.</p>
+                <h1 className="text-center"> {departmentName}</h1>
+                <p>Shows the last 3 recent kudoses that are owned by users who work in all projects run by the {departmentName}.</p>
                 <table className="table table-striped table-bordered" style={{ "marginTop": "15px" }}>
                     <thead>
                         <tr>
@@ -76,7 +94,7 @@ const KudosByDepartment = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {normalizeDataDate(JSON.parse(location.state.datam)) && JSON.parse(location.state.datam).map((kudo, index) =>
+                        {kudos && kudos.map((kudo, index) =>
                             <tr key={index}>
                                 <td>{kudo.createdAt}</td>
                                 <td>{kudo.recipientUsername}</td>

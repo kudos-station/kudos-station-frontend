@@ -71,16 +71,12 @@ import { useEffect, useState } from 'react'
             switch(variation) {
               case "fast":
                 return "Fast"
-                break;
               case "team-player":
                 return "Team Player"
-                break;
               case "respectful":
                 return "Respectful"
-                break;
               default:
                 return "Not Selected"
-                return
             }
           }
 
@@ -159,12 +155,31 @@ import { useEffect, useState } from 'react'
             getUser()
             getSentKudos(getSender())
             getRecievedKudos(getSender())
+            getTotalKudos(getSender())
         }, [window.location.pathname]);
 
         const [currentUserName, setCurrentUserName] = useState("")
         const [currentUserSurname, setCurrentUserSurname] = useState("")
         const [currentUserActiveProject, setCurrentUserActiveProject] = useState("")
         const [currentUserDepartment, setCurrentUserDepartment] = useState("")
+        const [currentSupervisor, setCurrentSupervisor] = useState(0)
+
+        const getTotalKudos = async (username) => {
+            const requestOptions = {
+              method: 'GET',
+              headers: {'Authorization': getCookie('kudos-auth')},
+            };
+            const base_url = process.env.REACT_APP_KUDOS_BASE_URL
+            const res = await fetch(base_url + '/user/total-kudos/'+username, requestOptions)
+            const data = await res.json()
+            if(res.status === 200){
+              console.log(data["totalCount"])
+              setCurrentSupervisor(data["totalCount"])
+            }else{
+              console.log("failed")
+            }
+          }
+
 
         const getUser = async () => {
             const requestOptions = {
@@ -174,14 +189,11 @@ import { useEffect, useState } from 'react'
             const base_url = process.env.REACT_APP_KUDOS_BASE_URL
             const res = await fetch(base_url + '/user/profile/', requestOptions)
             const data = await res.json()
-            
-
             if (res.status === 200) {
                 setCurrentUserName(data["firstName"])
                 setCurrentUserSurname(data["lastName"])
-                setCurrentUserActiveProject(data["projects"])
-                setCurrentUserDepartment(data["department"])
-
+                setCurrentUserActiveProject(data["projects"] + "")
+                setCurrentUserDepartment(data["department"] + "")
             } else {
                 console.log("failed")
             }
@@ -199,20 +211,21 @@ import { useEffect, useState } from 'react'
                           
                             <div id="userInfo" >
                             <h2 >{currentUserName} {currentUserSurname}</h2>
-                            <h6> {currentUserDepartment} </h6>
+                            <h6 >{currentUserDepartment} </h6>
                             <br />
                             </div>
                         </div>
+                        
 
                         <div id="line_2"  ></div>
 
                          <div className="flex-parent">
                             <div id="lhs" >
-                            Active Project<br /><br /><br /> <br />Kudos' Recieved<br /><br /><br /><br /><br /><br />Kudos' Sent
+                            Active Project<br /><br /> Total Kudos <br /><br /><br /> <br />Kudos' Recieved<br /><br /><br /><br /><br /><br />Kudos' Sent<br /><br /><br />  
                             </div>
-
                             <div id="rhs" >
                             {currentUserActiveProject}<br /><br />
+                            {currentSupervisor} <br /> <br />
                                  <div id= "table table-striped table-bordered" >
                                     {kudosRecievedTable}
                                 </div> 

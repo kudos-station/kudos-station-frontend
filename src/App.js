@@ -13,6 +13,7 @@ import KudosByDepartment from './components/FilterPage/kudosByDepartment.compone
 import UsersByDepartment from './components/FilterPage/usersByDepartment.component'
 import UsersProjectWithMaxKudos from './components/FilterPage/usersProjectWithMaxKudos.component'
 import UsersByProject from './components/FilterPage/usersByProject.component'
+
 import AdminPanel from './components/AdminPanelPage/admin-panel.component'
 import AddUser from './components/AdminPanelPage/adduser.component'
 import ChangeUserRole from './components/AdminPanelPage/changeuserrole.component'
@@ -21,7 +22,9 @@ import AddDepartment from './components/AdminPanelPage/add-department.component'
 import AddProject from './components/AdminPanelPage/addproject.component'
 import AddUserToProject from './components/AdminPanelPage/adduser-to-project.component'
 import AddUserToDepartment from './components/AdminPanelPage/adduser-to-department.component'
-
+import SearchedProfile from './components/searchedProfile.component'
+import UsersByKudos from './components/FilterPage/usersByKudos.component'
+import Scoreboard from './components/scoreboard.component'
 
 function App() {
   const [currentNavbar, setCurrentNavbar] = useState(null);
@@ -49,6 +52,7 @@ function App() {
               <Route path="/home" element={<MainPage />} />
               <Route path="/send-kudos" element={<CreateNewKudos />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/scoreboard" element={<Scoreboard />} />
               <Route path="/filter" element={<Filter />} />
               <Route path="/kudosByDepartment" element={<KudosByDepartment />} />
               <Route path="/usersByDepartment" element={<UsersByDepartment />} />
@@ -62,9 +66,8 @@ function App() {
               <Route path="/admin-panel/add-project" element={<AddProject />} />
               <Route path="/admin-panel/assign-user-to-project" element={<AddUserToProject />} />
               <Route path="/admin-panel/add-user-to-department" element={<AddUserToDepartment />} />
-              
-
-              
+              <Route path="/searchedProfile" element={<SearchedProfile />} />
+              <Route path="/usersByKudos" element={<UsersByKudos />} />
             </Routes>
           </div>
         </div>
