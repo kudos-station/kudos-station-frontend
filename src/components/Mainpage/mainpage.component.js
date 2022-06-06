@@ -24,8 +24,6 @@ const MainPage = () => {
         const data = await res.json()
         if(res.status === 200){
           setCurrentUserFullName(data["firstName"] + " " + data["lastName"])
-        }else{
-          console.log("failed")
         }
       }
       getSender()

@@ -49,8 +49,42 @@ const AdminPanel = () => {
         <div className="mb-3">
           <button className='btn btn-danger btn-ap'>Delete User</button>
         </div>
-        </Link>   
-      </div>    
+        </Link>
+
+        <Link to="delete-project">
+        <div className="mb-3">
+          <button className='btn btn-danger btn-ap'>Delete Project</button>
+        </div>
+        </Link>
+
+        <Link to="delete-departmentr">
+        <div className="mb-3">
+          <button className='btn btn-danger btn-ap'>Delete Department</button>
+        </div>
+        </Link>
+
+        <Link to="delete-user-from-project">
+        <div className="mb-3">
+          <button className='btn btn-danger btn-ap'>Delete User From Project</button>
+        </div>
+        </Link>
+
+        <Link to="delete-user-from-department">
+        <div className="mb-3">
+          <button className='btn btn-danger btn-ap'>Delete User From Department</button>
+        </div>
+        </Link>
+
+        
+        
+        
+        
+        
+      </div>
+
+    
+        
+      
     );
   };
 
