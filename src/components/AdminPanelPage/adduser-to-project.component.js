@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import "../../styles.css";
+import "../AdminPanelPage/admin-panel.css";
 import {  getCookie } from '../cookie-functions';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
@@ -80,7 +81,7 @@ const AddUserToProject = () => {
     ); */
 
     return (
-      <div className='container-all d-change-role'>
+      <div className='container-all'>
           <h3 className='add-user-title'>Assign User to Project</h3>
           <hr className='hr-add-user'></hr>
           
@@ -88,47 +89,59 @@ const AddUserToProject = () => {
 
         
           <form onSubmit={handleSubmit}>
+          <div className="mb-3">    
             
-            <br></br>
            
-            
+            <label>User Name</label>
             <input
             type="text"
             className="form-control"
-            placeholder="User Name"
+            placeholder=""
             name = "uname"
             autoComplete = "on"
             id='username'
             required
           />
+          </div>
+          <div className="mb-3">
+          <label>Department Name</label>
           <input
             type="text"
             className="form-control"
-            placeholder="Department Name"
+            placeholder=""
             name = "uname"
             autoComplete = "on"
             id='departmentname'
             required
           />
+          </div>
+          <div className="mb-3">
+          <label>Project Name</label>
           <input
             type="text"
             className="form-control"
-            placeholder="Project Name"
+            placeholder=""
             name = "uname"
             autoComplete = "on"
             id='projectname'
             required
           />
+          </div>
+          <div className="mb-3">
+          <label>Work Hours</label>
           <input
             type="text"
             className="form-control"
-            placeholder="Work Hours"
+            placeholder=""
             name = "uname"
             autoComplete = "on"
             id='workhours'
             required
           />
-            <button type='submit' className='btn btn-primary btn-change-role'>Assign User to Project</button>
+          </div>
+          <div className="d-grid">
+            <button type='submit' className='btn btn-primary btn-add-user max-width'>Assign User to Project</button>
+            </div>
         </form>
         
       
