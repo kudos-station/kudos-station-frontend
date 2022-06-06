@@ -14,7 +14,7 @@ const LogOutButton = () => {
     return(
         <Button 
         className="btn btn-primary" 
-        style= {{"marginRight": "10px", "width": "150px"}}
+        style= {{"marginRight": "10px", "width": "150px", "height":"50px"}}
         onClick={handleLogOut}>
         Log Out
         </Button>

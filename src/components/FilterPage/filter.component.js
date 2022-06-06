@@ -53,7 +53,6 @@ const Filter = () => {
     if (res.status === 200) {
       console.log('send department successful')
       console.log(data["usernames"])
-      console.log("geldi mi" + JSON.stringify(data["usernames"]))
       navigate('/usersByDepartment', {
         state: {
           datam: data,
@@ -93,7 +92,6 @@ const Filter = () => {
     const res = await fetch(base_url + '/user/project/obtained-all-kudos-variation/sent-any-kudos/', requestOptions)
     const data = await res.json()
     if (res.status === 200) {
-      console.log("bu ne şimdi" + JSON.stringify(data["firstNames"]))
       navigate('/usersByProject', {
         state: {
           usernamesData: JSON.stringify(data["usernames"]),
@@ -156,7 +154,7 @@ const Filter = () => {
         <form onSubmit={onClick1} name="form1">
           <div className="filterComponent1" id="cnk">
             <h3>Filter Kudos By Department</h3>
-            <p>Shows the last 5 recent kudoses that are owned by users who work in all projects run by the given department.</p>
+            <p>Shows the last 3 recent kudoses that are owned by users who work in all projects run by the given department.</p>
             <div className="mb-3">
               <label>Department</label>
               <input
@@ -200,9 +198,9 @@ const Filter = () => {
 
 
         <form name="form5" onSubmit={onClick5}>
-          <div className="filterComponent2" id="cnk">
+          <div className="filterComponent3" id="cnk">
             <h3>Filter Users by Kudos Type</h3>
-            <p>Shows users who has sent at least 5 given kudoses, but has not sent more than 10.</p>
+            <p>Shows users who has sent at least 2 given kudoses, but has not sent more than 10.</p>
             <div className="mb-3">
               <label>Kudos Type</label>
               <input
@@ -225,9 +223,9 @@ const Filter = () => {
 
       <br></br>
 
-      <div className="flex1">
+      <div className="flex1" style = {{"margin": "auto", "width": "73.5%"}}>
         <form name="form3" onSubmit={onClick3}>
-          <div className="filterComponent3" id="cnk">
+          <div className="filterComponent4" id="cnk">
             <h3>Filter User's Projects by # of Kudos</h3>
             <p>Shows the person who gets the most kudos given kudos type and the projects this person is currently working on.</p>
             <div className="mb-3">
@@ -249,8 +247,8 @@ const Filter = () => {
         </form>
 
         <form name="form4" onSubmit={onClick4}>
-          <div className="filterComponent4" id="cnk">
-            <h3>Filter Users by Project</h3>
+          <div className="filterComponent5" id="cnk">
+            <h3>Filter Users <br></br> by Project</h3>
             <p>Shows users who work on the given project and are recieved all of the kudos types and sent any of the kudos type.</p>
             <div className="mb-3">
               <label>Project</label>

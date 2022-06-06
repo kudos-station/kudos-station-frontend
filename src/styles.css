@@ -278,11 +278,12 @@
   padding-top: 10px;
   padding-bottom: 10px;
   width: 300px;
+  flex:1;
 }
 
 .filterComponent3 {
-  margin-top: 20px;
-  margin-right: 20px;
+  margin-top: 40px;
+  margin-left: 40px;
   border: 2px solid #167bff;
   border-radius: 10px;
   padding-left: 10px;
@@ -290,11 +291,12 @@
   padding-top: 10px;
   padding-bottom: 10px;
   width: 300px;
-  flex: 1;
+  flex:1;
+
 }
 .filterComponent4 {
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 40px;
   border: 2px solid #167bff;
   border-radius: 10px;
   padding-left: 10px;
@@ -305,7 +307,7 @@
 }
 .filterComponent5 {
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 40px;
   border: 2px solid #167bff;
   border-radius: 10px;
   padding-left: 10px;

@@ -24,9 +24,22 @@ function UsersByDepartment() {
             <div className="usersByDepartmentComponent">
                 <div id="users" >
                     <h1 className="text-center">{departmentName} </h1>
-                    <p> These users are working on {departmentName} department, also they recieved all variations of possible kudoses </p>
+                    <p> These users are working on {departmentName} department, and they recieved all possible variations of kudoses. </p>
                     <div id="horizontalLine"  ></div>
-                    {users.map(users => <p>{users}</p>)}
+                    <table className="table table-striped table-bordered" style= {{"marginTop":"15px"}}>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {users && users.map((user, index) =>
+                                <tr key={index}>
+                                    <td>{user}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
                     <br></br>
                 </div>
 

@@ -28,7 +28,7 @@ function UsersByProject() {
                 <div className="container" >
                     <h3 className="p-3 text-center"></h3>
                     <h1 className="text-center"> {location.state.projectName} </h1>
-                    <p> These users are working on the input project and are recieved all of the kudos types and sent at least one kudos type.</p>
+                    <p> These users are working on the selected project and they are recieved all of the kudos types and sent at least one kudos type.</p>
                     <table className="table table-striped table-bordered" style={{ "marginTop": "15px" }}>
                         <thead>
                             <tr>

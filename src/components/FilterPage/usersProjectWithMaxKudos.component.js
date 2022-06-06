@@ -15,6 +15,7 @@ function UsersProjectWithMaxKudos() {
 
     const navigate = useNavigate();
     useEffect(() => {
+        console.log(projects)
         if (!getCookie('kudos-auth')) {
             navigate("/login");
         }
@@ -24,13 +25,23 @@ function UsersProjectWithMaxKudos() {
         <>
             <div className= "containerUsersComponent" >
                     <div id="containerUsers" >
-                    <h1 className="text-center">{username}</h1>
-                    {username} has the most input kudos type. 
-                    <br></br>
-                    Here are the {username}'s current projects.
-                    <br></br>
+                    <h4 className="text-center"> {username} has the most selected kudos type. </h4>
+
                         <div id="horizontalLine"  ></div>
-                    {projects.map(projects => <p>{projects}</p>)}
+                        <table className="table table-striped table-bordered" style= {{"marginTop":"15px"}}>
+                        <thead>
+                            <tr>
+                                <th>{username}'s Active Projects</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {projects[0] && projects[0].map((project, index) =>
+                                <tr key={index}>
+                                    <td>{project}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
                     </div>
                 </div>
 

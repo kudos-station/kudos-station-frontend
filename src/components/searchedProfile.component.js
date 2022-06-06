@@ -19,14 +19,6 @@ function SearchedProfile() {
     const [dataKudos, setDataKudos] = useState([{}])
     const [dataSentKudos, setDataSendKudos] = useState([{}])
 
-    const getSender = () => {
-        const encoded = getCookie('kudos-auth').substring(6)
-        var decoded = window.atob(encoded)
-
-        decoded = decoded.split(":")[0]
-        return decoded
-    }
-
     const getSentKudos = async (user) => {
         const requestOptions = {
             method: 'GET',
@@ -74,16 +66,12 @@ function SearchedProfile() {
         switch (variation) {
             case "fast":
                 return "Fast"
-                break;
             case "team-player":
                 return "Team Player"
-                break;
             case "respectful":
                 return "Respectful"
-                break;
             default:
                 return "Not Selected"
-                return
         }
     }
 
@@ -162,13 +150,30 @@ function SearchedProfile() {
         getUser(user)
         getSentKudos(user)
         getRecievedKudos(user)
+        getTotalKudos(user)
     }, [window.location.pathname]);
 
     const [currentUserName, setCurrentUserName] = useState("")
     const [currentUserSurname, setCurrentUserSurname] = useState("")
     const [currentUserActiveProject, setCurrentUserActiveProject] = useState("")
     const [currentUserDepartment, setCurrentUserDepartment] = useState("")
-    const [currentSupervisor, setCurrentSupervisor] = useState("")
+    const [currentSupervisor, setCurrentSupervisor] = useState(0)
+
+    const getTotalKudos = async (username) => {
+        const requestOptions = {
+          method: 'GET',
+          headers: {'Authorization': getCookie('kudos-auth')},
+        };
+        const base_url = process.env.REACT_APP_KUDOS_BASE_URL
+        const res = await fetch(base_url + '/user/total-kudos/'+username, requestOptions)
+        const data = await res.json()
+        if(res.status === 200){
+          console.log(data["totalCount"])
+          setCurrentSupervisor(data["totalCount"])
+        }else{
+          console.log("failed")
+        }
+      }
 
     const getUser = async (user) => {
         const requestOptions = {
@@ -185,7 +190,6 @@ function SearchedProfile() {
             setCurrentUserSurname(data["lastName"])
             setCurrentUserActiveProject(data["projects"] + "")
             setCurrentUserDepartment(data["department"] + "")
-            setCurrentSupervisor(data["authorities"])
         } else {
             console.log("failed")
         }
@@ -198,7 +202,7 @@ function SearchedProfile() {
 
                 <div className="flex-parent-top">
                     <div id="image">
-                        <img src="../ellipse_1.png" id="ellipse_1" />
+                        <img src="../ellipse_1.png" id="ellipse_1" alt=""/>
                     </div>
 
                     <div id="userInfo" >
@@ -213,7 +217,7 @@ function SearchedProfile() {
 
                 <div className="flex-parent">
                     <div id="lhs" >
-                        Active Project<br /><br /> Authorities <br /><br /><br /> <br />Kudos' Recieved<br /><br /><br /><br /><br /><br />Kudos' Sent<br /><br /><br />
+                        Active Project<br /><br /> Total Kudos <br /><br /><br /> <br />Kudos' Recieved<br /><br /><br /><br /><br /><br />Kudos' Sent<br /><br /><br />
                     </div>
                     <div id="rhs" >
                         {currentUserActiveProject}<br /><br />

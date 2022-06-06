@@ -26,9 +26,22 @@ function UsersByKudos() {
             <div className="usersByDepartmentComponent">
                 <div id="users" >
                     <h1 className="text-center">{kudosType} </h1>
-                    <p> Who has sent at least 5 {kudosType} kudoses, but has not sent more than 10 </p>
+                    <p> Who has sent at least 2 {kudosType} kudoses, but has not sent more than 10. </p>
                     <div id="horizontalLine"  ></div>
-                    {users.map(users => <p>{users}</p>)}
+                    <table className="table table-striped table-bordered" style= {{"marginTop":"15px"}}>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {users && users.map((user, index) =>
+                                <tr key={index}>
+                                    <td>{user}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
                     <br></br>
                 </div>
 

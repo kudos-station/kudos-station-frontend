@@ -18,7 +18,6 @@ const KudosNavbar = () => {
 		e.preventDefault();
 		var { searchB } = document.forms[0];
 		sendUserProfile(searchB.value)
-
 	}
 	const sendUserProfile = async (searchB) => {
 		const requestOptions = {
@@ -34,6 +33,7 @@ const KudosNavbar = () => {
 					datam: data
 				}
 			});
+			window.location.reload();
 		} else {
 			console.log('failed to send')
 		}
@@ -47,8 +47,9 @@ const KudosNavbar = () => {
 				className="container-fluid"
 				style={{ maxHeight: '100px' }}
 				navbarScroll
-			>   <Nav.Link className="border-left pl-2 ml-auto" style={{"marginLeft": "720px"}} href="/filter">Filter</Nav.Link>
-				<Nav.Link className="border-left pl-2 ml-auto" style={{"marginLeft": "auto", "marginRight": "10px"}} href="/profile">Profile</Nav.Link>
+			>   <Nav.Link className="border-left pl-2 ml-auto"  href="/filter">Filter</Nav.Link>
+				<Nav.Link className="border-left pl-2 ml-auto"  href="/scoreboard">Scoreboard</Nav.Link>
+				<Nav.Link className="border-left pl-2 ml-auto"  href="/profile">Profile</Nav.Link>
 			</Nav>
 
 				<form onSubmit={onClickSearch} className = "d-flex">
@@ -56,11 +57,11 @@ const KudosNavbar = () => {
 								type="text"
 								className="me-2"
 								placeholder="Search user"
-								style={{ "width": "100px" }}
+								style={{ "width": "200px" }}
 								name="searchB"
 								required
 							/>
-							<button type="submit" className="btn btn-primary" style={{ "width": "90px", "margin-right":"10px" }}>
+							<button type="submit" className="btn btn-primary" style={{ "width": "90px", "marginRight":"10px" }}>
 								Search
 							</button>
 

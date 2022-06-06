@@ -15,6 +15,7 @@ import UsersProjectWithMaxKudos from './components/FilterPage/usersProjectWithMa
 import UsersByProject from './components/FilterPage/usersByProject.component'
 import SearchedProfile from './components/searchedProfile.component'
 import UsersByKudos from './components/FilterPage/usersByKudos.component'
+import Scoreboard from './components/scoreboard.component'
 
 function App() {
   const [currentNavbar, setCurrentNavbar] = useState(null);
@@ -42,6 +43,7 @@ function App() {
               <Route path="/home" element={<MainPage />} />
               <Route path="/send-kudos" element={<CreateNewKudos />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/scoreboard" element={<Scoreboard />} />
               <Route path="/filter" element={<Filter />} />
               <Route path="/kudosByDepartment" element={<KudosByDepartment />} />
               <Route path="/usersByDepartment" element={<UsersByDepartment />} />
