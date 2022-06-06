@@ -30,10 +30,8 @@ function SearchedProfile() {
         const normalizedSentData = await normalizeDataDate(dataSentKudos)
 
         if (sentKudos.status === 200) {
-            console.log(dataSentKudos)
+            
             setDataSendKudos(normalizedSentData)
-        } else {
-            console.log("failed")
         }
     }
     const getRecievedKudos = async (user) => {
@@ -47,10 +45,8 @@ function SearchedProfile() {
         const normalizedData = await normalizeDataDate(dataKudos)
 
         if (resKudos.status === 200) {
-            console.log(dataKudos)
+         
             setDataKudos(normalizedData)
-        } else {
-            console.log("failed")
         }
     }
     const normalizeDataDate = async (dataKudos) => {
@@ -168,10 +164,8 @@ function SearchedProfile() {
         const res = await fetch(base_url + '/user/total-kudos/'+username, requestOptions)
         const data = await res.json()
         if(res.status === 200){
-          console.log(data["totalCount"])
+          
           setCurrentSupervisor(data["totalCount"])
-        }else{
-          console.log("failed")
         }
       }
 
@@ -190,8 +184,6 @@ function SearchedProfile() {
             setCurrentUserSurname(data["lastName"])
             setCurrentUserActiveProject(data["projects"] + "")
             setCurrentUserDepartment(data["department"] + "")
-        } else {
-            console.log("failed")
         }
 
     }

@@ -15,7 +15,7 @@ function UsersProjectWithMaxKudos() {
 
     const navigate = useNavigate();
     useEffect(() => {
-        console.log(projects)
+        
         if (!getCookie('kudos-auth')) {
             navigate("/login");
         }

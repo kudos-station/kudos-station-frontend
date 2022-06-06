@@ -20,10 +20,8 @@ const [kudos, setKudos] = useState([{}])
     const data = await res.json()
     const normalizedData = await normalizeDataDate(data)
     if(res.status === 200){
-      console.log(data)
+     
       setKudos(normalizedData)
-    }else{
-      console.log("failed")
     }
   }
 

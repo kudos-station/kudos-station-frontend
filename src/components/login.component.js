@@ -13,10 +13,10 @@ const Login = () => {
       headers: {'Authorization': encoded},
     };
     const base_url = process.env.REACT_APP_KUDOS_BASE_URL
-    console.log(base_url)
+    
     const res = await fetch(base_url + '/user/profile/', requestOptions)
     if(res.status === 401){
-      console.log('unauth')
+      
       setErrorMessages({name: "pass", message: errors.pass})
       setInterval(() => {
         setErrorMessages({name: "noerror", message: errors.noerror})

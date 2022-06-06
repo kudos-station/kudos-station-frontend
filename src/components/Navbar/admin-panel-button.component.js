@@ -28,8 +28,6 @@ const AdminPanelButton = () => {
               if(data["authorities"] === "ROLE_ADMIN"){                  
                 setRole(1)
               }            
-          }else{
-            console.log("failed")
           }
     }
     
@@ -48,8 +46,7 @@ const AdminPanelButton = () => {
             Admin
             </Button>
         )
-    }
-    else{
+    } else{
         return(
             <div></div>
         )

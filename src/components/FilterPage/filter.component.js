@@ -51,16 +51,13 @@ const Filter = () => {
     const res = await fetch(base_url + '/user/kudos/received-all-variations/from-department/', requestOptions)
     const data = await res.json()
     if (res.status === 200) {
-      console.log('send department successful')
-      console.log(data["usernames"])
+      
       navigate('/usersByDepartment', {
         state: {
           datam: data,
           dName: department2
         }
       });
-    } else {
-      console.log('failed to send')
     }
   }
   const sendUsersByKudosType = async (userKudosType) => {
@@ -78,8 +75,6 @@ const Filter = () => {
           kType: userKudosType
         }
       });
-    } else {
-      console.log('failed to send')
     }
   }
   const sendUserByProject = async (pName) => {
@@ -100,8 +95,6 @@ const Filter = () => {
           projectName: pName
         }
       });
-    } else {
-      console.log('failed to send')
     }
   }
 
@@ -115,7 +108,7 @@ const Filter = () => {
     const res = await fetch(base_url + '/user/kudos/works-in-all-projects/from-department/', requestOptions)
     const data = await res.json()
     if (res.status === 200) {
-      console.log('send department successful')
+      
       setInputDepartment(JSON.stringify(data));
       navigate('/kudosByDepartment', {
         state: {
@@ -123,8 +116,6 @@ const Filter = () => {
           dName: department
         }
       });
-    } else {
-      console.log('failed to send')
     }
   }
   const sendProjectsOfUser = async (kudosType) => {
@@ -141,9 +132,7 @@ const Filter = () => {
           datam: data
         }
       });
-    } else {
-      console.log('failed to send')
-    }
+    } 
   }
 
 
