@@ -53,7 +53,7 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <h3>Login</h3>
         <div className="mb-3">
-          <label>User Name</label>
+          <label>Username</label>
           <input
             type="text"
             className="form-control"
